@@ -4,3 +4,4 @@ bin
 lib
 include
 ims.egg-info
+.env

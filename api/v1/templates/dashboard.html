@@ -9,12 +9,22 @@ Practitioner Dashboard
 <head>
     <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
 </head>
+<style>
+    #navbar {
+        margin-left: 2800%;
+    }
+</style>
 
 <body>
     <header>
         <nav class="navbar">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" id="login" href="/api/v1/practitioner/login">Logout</a>
+                </div>
+    
+
             <div class="collapse navbar-collapse" id="navbar">
-                <div class="navbar-nav" id="toggle-btn">&#9776;</div>
+                <div id="toggle-btn">&#9776;</div>
                 <div id="sidebar-menu"><br><br>
                     <ul id="side-menu">
                         <li class="menu-title">Dashboard</li>
@@ -101,10 +111,10 @@ Practitioner Dashboard
                 </div>
         </nav>
     </header>
-    <div class="content">
+    <div>
         <!-- Your main content here -->
-        <section class="hero">
-            <div class="hero-content">
+        <section>
+            <div>
                 <h1>Empowering Health Practitioners with<br> Immunization Solutions</h1>
                 <h2>Professional and reliable immunization<br>services for better patient care.</h2>
                 <!-- <div class="hero-image">

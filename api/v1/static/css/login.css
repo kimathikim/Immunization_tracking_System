@@ -1,4 +1,4 @@
-header {
+/* header {
   position: fixed;
   top: 0;
   width: 100%;
@@ -6,7 +6,7 @@ header {
   background-color: #3498db;
   color: #D1E7FF;
   padding: 15px 50px;
-}
+} */
 
 body {
   font-family: Arial, sans-serif;

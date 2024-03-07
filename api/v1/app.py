@@ -20,6 +20,14 @@ from api.v1.views import app_views
 from flask_mail import Mail
 from os import getenv
 from api.v1.views.practitioner import app_config
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+email = os.getenv("EMAIL")  
+password = os.getenv("PASSWORD")
 
 
 app = Flask(__name__)
@@ -31,14 +39,13 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = app_config
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
-app.config["MAIL_USERNAME"] = "briankimathi94@gmail.com"
-app.config["MAIL_PASSWORD"] = "uqiv dykn sntz ewyq"
+app.config["MAIL_USERNAME"] = email
+app.config["MAIL_PASSWORD"] = password
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USE_SSL"] = False
 app.config["UPLOAD_FOLDER"] = "static/profile_pictures"
 app.config["SESSION_TYPE"] = "sqlalchemy"
 app.config["SESSION_SQLALCHEMY"] = None
-
 
 
 # Initialize Flask-Mail
