@@ -1,0 +1,155 @@
+{% extends "baseTemp.html" %}
+
+{% block title %}
+Practitioner Dashboard
+{% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="collapse navbar-collapse" id="navbar" style="margin: 20px;">
+                <div class="navbar-nav" id="toggle-btn">&#9776;</div>
+                <div id="sidebar-menu"><br><br>
+                    <ul id="side-menu">
+                        <li class="menu-title">Dashboard</li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Parent Personal Profile</span>
+                            </a>
+                        </li>
+                        <li class="menu-title mt-2">Immunization-records</li>
+                        <li>
+                            {% if children %}
+                            {% for child in children %}
+                        <li>
+                            <a href="{{ url_for('app_views.immunization_record', child_id=child.id) }}">
+                                <i class="ri-registered-fill"></i>
+                                <span>{{child.first_name}}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Immunization-record</span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        </li>
+                        <li>
+                        <li class="menu-title mt-2">Vaccine-management</li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Vaccine-inventory</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-git-pull-request-fill"></i>
+                                <span>Vaccine-information</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-title mt-2">Appointments And Reminders</li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Appointment-scheduling-tool</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-git-pull-request-fill"></i>
+                                <span>Appointment Reminder</span>
+                            </a>
+                        </li>
+                        <li class="menu-title mt-2">Education And Resources</li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('FAQs.html')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Quick Guides</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="#">Submenu Item 1</a></li>
+                                <li><a href="#">Submenu Item 2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-git-pull-request-fill"></i>
+                                <span>Practicals</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
+    </header>
+    <div class="content">
+        <!-- Section 1: Parent Information -->
+        <section class="parent-info">
+            <h2>Parent Information</h2>
+            <p>Here you can view and update your personal information.</p>
+            <!-- Add more content related to parent information as needed -->
+            <iframe src="/parent_information" frameborder="0"></iframe>
+        </section>
+
+        <!-- Section 2: Child Immunization Records -->
+        <section class="child-immunization">
+            <h2>Child Immunization Records</h2>
+            <p>View and manage immunization records for your child.</p>
+            <!-- Add more content related to child immunization records as needed -->
+            <iframe src="/child_immunization_records" frameborder="0"></iframe>
+        </section>
+
+        <!-- Section 3: Appointment Scheduler -->
+        <section class="appointment-scheduler">
+            <h2>Appointment Scheduler</h2>
+            <p>Schedule appointments for immunizations or checkups.</p>
+            <!-- Add more content related to appointment scheduler as needed -->
+            <iframe src="/api/v1/practitioner/search" frameborder="54">ewrwer</iframe>
+        </section>
+
+        <!-- Section 4: Vaccine Information -->
+        <section class="vaccine-information">
+            <h2>Vaccine Information</h2>
+            <p>Access information about different vaccines.</p>
+            <!-- Add more content related to vaccine information as needed -->
+            <iframe src="/vaccine_information" frameborder="0"></iframe>
+        </section>
+
+        <!-- Section 5: Educational Resources -->
+        <section class="educational-resources">
+            <h2>Educational Resources</h2>
+            <p>Explore educational materials and FAQs about immunization.</p>
+            <!-- Add more content related to educational resources as needed -->
+            <iframe src="/educational_resources" frameborder="0"></iframe>
+        </section>
+
+        <!-- Add more sections as needed -->
+
+    </div>
+
+    </div>
+    <script>
+        document.getElementById('toggle-btn').addEventListener('click', function () {
+            var sidebar = document.getElementById('sidebar-menu');
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-260px';
+            } else {
+                sidebar.style.left = '0px';
+            }
+        })
+    </script>
+
+</body>
+{% endblock %}

@@ -1,0 +1,72 @@
+ /* Reset default list styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style for each navigation item */
+nav ul li {
+    display: inline;
+    margin-right: 20px; /* Adjust spacing between menu items */
+}
+
+/* Style for the anchor links */
+nav ul li a {
+    text-decoration: none;
+    color: #333; /* Adjust the color as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold; /* Adjust font weight as needed */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for anchor links */
+nav ul li a:hover {
+    color: #007bff; /* Adjust hover color as needed */
+}
+* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Section styles */
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    margin-bottom: 10px;
+}
+
+/* Form styles */
+label {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #0056b3;
+    color: #fff;
+}

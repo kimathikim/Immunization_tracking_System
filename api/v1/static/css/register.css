@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+}
+h2 {
+  margin-top: auto;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  margin-bottom: 8px;
+  text-decoration: antiquewhite;
+}
+input {
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 8px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#userType {
+  margin-bottom: 25px;
+  padding: 8px;
+  border-radius: 8px;
+  width: 250px;
+  background-color: lightslategray;
+}

@@ -1,0 +1,52 @@
+<script>
+    document.getElementById("childForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+        // Get form values
+        var childName = document.getElementById("childName").value;
+        var dateOfBirth = document.getElementById("dateOfBirth").value;
+        var birthNotification = document.getElementById("birthNotification").value;
+        var parentName = document.getElementById("parentName").value;
+        var parentPhoneNumber = document.getElementById("parentPhoneNumber").value;
+
+        // Send AJAX request to backend to verify parent's phone number
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/verifyParentPhoneNumber", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Parent phone number is in the system, proceed with form submission
+                    displayImmunizationSchedule(childName, dateOfBirth);
+                } else {
+                    alert("Parent's phone number is not registered. Please register the parent.");
+                }
+            }
+        };
+        // Send parent's phone number to the backend for verification
+        xhr.send(JSON.stringify({ parentPhoneNumber: parentPhoneNumber }));
+    });
+
+    function displayImmunizationSchedule(childName, dateOfBirth) {
+        // Simulate immunization schedule data (you would fetch this from the server)
+        var immunizationSchedule = {
+            vaccine1: "First Vaccine - Age 2 months",
+            vaccine2: "Second Vaccine - Age 4 months",
+            vaccine3: "Third Vaccine - Age 6 months",
+            // Add more vaccines as needed
+        };
+
+        // Display immunization schedule
+        var scheduleContainer = document.createElement("div");
+        scheduleContainer.innerHTML = "<h2>Immunization Schedule for " + childName + "</h2>";
+        var scheduleList = document.createElement("ul");
+        for (var vaccine in immunizationSchedule) {
+            var listItem = document.createElement("li");
+            listItem.textContent = immunizationSchedule[vaccine];
+            scheduleList.appendChild(listItem);
+        }
+        scheduleContainer.appendChild(scheduleList);
+
+        // Append schedule to the document
+        document.body.appendChild(scheduleContainer);
+    }
+</script>

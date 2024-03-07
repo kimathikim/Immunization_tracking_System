@@ -1,0 +1,109 @@
+  body {
+      margin: 0;
+      padding: 0%;
+      font-family: Arial, sans-serif;
+      display: flex;
+      position: relative;
+  }
+
+
+  #sidebar-menu {
+      background-color: #0076FD;
+      width: 250px;
+      position: fixed;
+      top: 35px;
+      left: -260px;
+      height: 100%;
+      /* Initially hide the sidebar */
+      overflow-y: auto;
+      transition: left 0.4s ease;
+  }
+
+  #side-menu {
+      list-style-type: none;
+      padding: 0px;
+  }
+
+  .menu-title {
+      font-weight: bold;
+      padding: 10px 15px;
+  }
+
+  #side-menu li {
+      padding: 10px 15px;
+  }
+
+  #side-menu li a {
+      color: #130c0c;
+      text-decoration: none;
+      display: block;
+  }
+
+  #side-menu li:hover {
+      background-color: #f5f2f2e0;
+  }
+
+  #side-menu li:hover a {
+      color: #000;
+  }
+
+  #side-menu li i {
+      margin-right: 10px;
+  }
+
+  /* Submenu styles */
+  .submenu {
+      display: none;
+      background-color: #0e7c7e;
+  }
+
+  .submenu li {
+      padding: 8px 30px;
+  }
+
+  .submenu li a {
+      color: #fff;
+  }
+
+  #side-menu li:hover .submenu {
+      display: block;
+  }
+
+  /* Toggle button styles */
+  #toggle-btn {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      background-color: #7081ee;
+      color: #101010;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 999;
+  }
+
+  .hero {
+      display: flex;
+      top: 5%;
+  }
+
+  .hero-content {
+      flex: 1;
+      /* This makes the content flex to fill available space */
+      margin-right: 20px;
+      /* Adjust as needed */
+      margin-top: 20px;
+  }
+
+  .hero-image {
+      flex: 1;
+      /* This makes the image flex to fill available space */
+  }
+
+  /* Optional: Add more styling to the image if needed */
+  .hero-image img {
+      max-width: 80%;
+      /* Ensure the image does not exceed its container */
+      height: auto;
+      /* Maintain aspect ratio */
+      margin-left: 60px;
+  }

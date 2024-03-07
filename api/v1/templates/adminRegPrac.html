@@ -1,0 +1,29 @@
+{% extends "baseTemp.html" %}
+{% block title%} register Practitioner {% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <h2>Register Practitioner</h2>
+        <form id="signupForm" class="login-container" method="post" enctype="multipart/form-data">
+            <label for="firstName"> First Name:</label>
+            <input type="text" name="first_name" id="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="second_Name" id="lastName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" name="confirm_password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

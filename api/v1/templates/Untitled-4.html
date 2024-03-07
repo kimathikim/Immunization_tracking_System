@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Practitioner Landing Page</title>
+    <link rel="stylesheet" href="css3.css">
+</head>
+<body>
+    <header>
+        <h1>Health Practitioner Dashboard</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#immunization-record">Patient Immunization Record</a></li>
+            <li><a href="#vaccine-management">Vaccine Management</a></li>
+            <li><a href="#appointment-scheduling">Appointment Scheduling</a></li>
+            <li><a href="#education-resources">Education and Resources</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="immunization-record">
+            <h2>Patient Immunization Record</h2>
+            <!-- Patient search -->
+            <div>
+                <label for="search">Search Patient:</label>
+                <input type="text" id="search" placeholder="Enter patient name or parent ID">
+                <button onclick="searchPatient()">Search</button>
+            </div>
+            <!-- Display patient immunization record -->
+            <div id="immunization-record-results">
+                <!-- Results will be displayed here -->
+            </div>
+        </section>
+
+        <section id="vaccine-management">
+            <h2>Vaccine Management</h2>
+            <!-- Vaccine inventory -->
+            <div>
+                <h3>Vaccine Inventory</h3>
+                <!-- Display vaccine inventory -->
+                <div id="vaccine-inventory">
+                    <!-- Vaccine inventory details will be displayed here -->
+                </div>
+            </div>
+            <!-- Vaccine information -->
+            <div>
+                <h3>Vaccine Information</h3>
+                <!-- Display vaccine information -->
+                <div id="vaccine-information">
+                    <!-- Vaccine information details will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="appointment-scheduling">
+            <h2>Appointment Scheduling and Reminders</h2>
+            <!-- Scheduling tool -->
+            <div>
+                <!-- Add scheduling tool here -->
+            </div>
+        </section>
+
+        <section id="education-resources">
+            <h2>Education and Resources</h2>
+            <!-- Add education and resources content here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Health Practitioner</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

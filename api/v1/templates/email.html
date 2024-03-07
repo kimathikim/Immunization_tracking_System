@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immunization Scheduling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Immunization Scheduling</h1>
+    <form id="scheduleForm" action="/schedule" method="post">
+        <label for="childName">Child's Name:</label>
+        <input type="text" id="childName" name="child_name" required>
+
+        <label for="vaccine">Select Vaccine:</label>
+        <select id="vaccine" name="vaccine" required>
+            <option value="">Select Vaccine</option>
+            <option value="MMR">MMR Vaccine</option>
+            <option value="DTaP">DTaP Vaccine</option>
+            <option value="Varicella">Varicella Vaccine</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <label for="date">Scheduled Date:</label>
+        <input type="date" id="date" name="scheduled_date" required>
+
+        <button type="submit">Schedule Immunization</button>
+    </form>
+</body>
+</html>
+

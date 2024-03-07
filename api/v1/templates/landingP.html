@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Menu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #101010;
+            font-family: Arial, sans-serif;
+        }
+        h1{
+            top: 10px;
+            color: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            font-size: xx-large;
+        }
+        h2{
+            color: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+        #sidebar-menu {
+            background-color:#fff;
+            width: 300px;
+            position: fixed;
+            top: 40px;
+            left: -260px; /* Initially hide the sidebar */
+            overflow-y: auto;
+            transition: left 0.3s ease;
+        }
+
+        #side-menu {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu-title {
+            font-weight: bold;
+            padding: 10px 15px;
+        }
+
+        #side-menu li {
+            padding: 10px 15px;
+            top:10%;
+        }
+
+        #side-menu li a {
+            color: #130c0c;
+            text-decoration: none;
+            display: block;
+        }
+
+        #side-menu li:hover {
+            background-color: #f5f2f2e0;
+        }
+
+        #side-menu li:hover a {
+            color: #000;
+        }
+
+        #side-menu li i {
+            margin-right: 10px;
+        }
+
+        /* Submenu styles */
+        .submenu {
+            display: none;
+            background-color: #0e7c7e;
+        }
+
+        .submenu li {
+            padding: 8px 30px;
+        }
+
+        .submenu li a {
+            color: #fff;
+        }
+
+        #side-menu li:hover .submenu {
+            display: block;
+        }
+
+        /* Toggle button styles */
+        #toggle-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #fff;
+            color: #101010;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .hero {
+  display: flex;
+  top: 5%;
+}
+
+.hero-content {
+  flex: 1; /* This makes the content flex to fill available space */
+  margin-right: 20px; /* Adjust as needed */
+  margin-top: 20px;
+}
+
+.hero-image {
+  flex: 1; /* This makes the image flex to fill available space */
+}
+
+/* Optional: Add more styling to the image if needed */
+.hero-image img {
+  max-width: 80%; /* Ensure the image does not exceed its container */
+  height: auto; /* Maintain aspect ratio */
+  margin-left: 60px;
+}
+    </style>
+</head>
+<body>
+    <div id="toggle-btn">&#9776;</div>
+    <div id="sidebar-menu"><br><br>
+        <ul id="side-menu">
+            <li class="menu-title">Dashboard</li>
+            <li>
+                <a href="link">
+                    <i class="ri-registered-fill"></i>
+                    <span>Practitioner Personal Profile</span>
+                </a>
+            </li>
+            <li class="menu-title mt-2">Patient immunization-record</li>
+            <li>
+                <a href="">
+                    <i class="ri-registered-fill"></i>
+                    <span>Real Time Patients Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="zz.html">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>childs Info</span>
+                </a>
+            </li>
+
+            <li class="menu-title mt-2">Vaccine-management</li>
+            <li>
+                <a href="link">
+                    <i class="ri-registered-fill"></i>
+                    <span>Vaccine-inventory</span>
+                </a>
+            </li>
+            <li>
+                <a href="link">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>Vaccine-information</span>
+                </a>
+            </li>
+
+            <li class="menu-title mt-2">Appointments And Reminders</li>
+            <li>
+                <a href="link">
+                    <i class="ri-registered-fill"></i>
+                    <span>Appointment-scheduling-tool</span>
+                </a>
+            </li>
+            <li>
+                <a href="link">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>Appointment Reminder</span>
+                </a>
+            </li>
+            <li class="menu-title mt-2">Education And Resources</li>
+            <li>
+                <a href="FAQs.html">
+                    <i class="ri-registered-fill"></i>
+                    <span>Quick Guides</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu Item 1</a></li>
+                    <li><a href="#">Submenu Item 2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="link">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>Practicals</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- Your main content here -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Empowering Health Practitioners with<br> Immunization Solutions</h1>
+                <h2>Professional and reliable immunization<br>services for better patient care.</h2>
+                <div class="hero-image">
+                    <img src="christian-bowen-I0ItPtIsVEE-unsplash (1).jpg">
+                </div>
+            </div>
+            
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('toggle-btn').addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar-menu');
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-260px';
+            } else {
+                sidebar.style.left = '0px';
+            }
+        });
+    </script>
+</body>
+</html>

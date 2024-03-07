@@ -1,0 +1,88 @@
+{% extends "login.html" %} {% block title%} practitioner register {% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .search-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        .search-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .search-results {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Parent Search</h1>
+        <div class="search-form">
+            <form method="POST">
+                <input type="tel" name="phone_number" class="search-input" placeholder="Enter phone number...">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+        </div>
+        <div class="search-results">
+    <h2>{{ parent.first_name }}'s</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Second Name</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through parent's children -->
+                {% for child in parent.children %}
+                <tr>
+                    <td>{{ child.first_name }}</td>
+                    <td>{{ child.second_name }}</td>
+                    <td>{{ child.date_of_birth }}</td>
+                    <td><a href="/api/v1//pratitioner/search/{{ child.id }}/child">Vaccines</a>
+                    </td>
+        
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/api/v1/practitioner/parent/{{ parent.id}}/child">Add Child</a>
+        </div>
+    </div>
+</body>
+{% endblock %}

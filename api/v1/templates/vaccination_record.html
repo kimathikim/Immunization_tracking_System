@@ -1,0 +1,327 @@
+{% extends "login.html" %} {% block title%} practitioner register {% endblock %}
+{% block content %}
+<title>Immunization Record</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        margin-left: 0%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #586cff;
+        text-align: center;
+    }
+
+    th {
+        background-color: #3d5dc5;
+    }
+
+    .birth {
+        color: blue;
+    }
+
+    .confirmed {
+        color: green;
+    }
+
+    .pending {
+        color: orange;
+    }
+
+    .cancelled {
+        color: red;
+    }
+</style>
+<title>Vaccination Schedule</title>
+</head>
+
+
+
+
+<body>
+
+    <h1>Immunization Record for {{ child.first_name }}</h1>
+    <table border="1">
+
+        <tbody>
+            <tr>
+                <th>Age</th>
+
+                <th>Vaccine</th>
+                <th>Date Admininistered</th>
+                <th>Doctor</th>
+                <th>Status</th>
+                <th></th>
+                </th>
+            </tr>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['BCG'][0].id }}" />
+                <tr>
+                    <td rowspan="3">At Birth</td>
+                    <td>BCG</td>
+                    <td>{{ vaccination_lists["BCG"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["BCG"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["BCG"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['OPV'][0].id }}" />
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['HEP B'][0].id }}" />
+                <tr>
+                    <td>
+                        HEP B
+                    </td>
+                    <td>{{ vaccination_lists["HEP B"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['DPT'][0].id }}" />
+                <tr>
+                    <td rowspan="6">6 Weeks</td>
+                    <td>DPT</td>
+                    <td>{{ vaccination_lists["DPT"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["DPT"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["DPT"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['HIB'][0].id }}" />
+                <tr>
+                    <td>HIB</td>
+                    <td>{{ vaccination_lists["HIB"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["HIB"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HIB"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['HEP B'][1].id }}" />
+                <tr>
+                    <td>HEP B</td>
+                    <td>{{ vaccination_lists["HEP B"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][1].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['OPV'][1].id }}" />
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][1].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['PNEUMOCOCCAL'][0].id }}" />
+                <tr>
+                    <td>PNEUMOCOCCAL</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['ROTAVIRUS'][0].id }}" />
+                <tr>
+                    <td>ROTAVIRUS</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["ROTAVIRUS"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['DPT'][1].id }}" />
+                <tr>
+                    <td rowspan="6">10 Weeks</td>
+                    <td>DPT</td>
+                    <td>{{ vaccination_lists["DPT"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["DPT"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["DPT"][1].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['HIB'][1].id }}" />
+                <tr>
+                    <td>HIB</td>
+                    <td>{{ vaccination_lists["HIB"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["HIB"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HIB"][1].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['HEP B'][1].id }}" />
+                <tr>
+                    <td>HEP B</td>
+                    <td>{{ vaccination_lists["HEP B"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][1].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['OPV'][2].id }}" />
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][2].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['PNEUMOCOCCAL'][1].id }}" />
+                <tr>
+                    <td>PNEUMOCOCCAL</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][1].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['ROTAVIRUS'][1].id }}" />
+                <tr>
+                    <td>ROTAVIRUS</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["ROTAVIRUS"][1].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['DPT'][2].id }}" />
+                <tr>
+                    <td rowspan="6">14 Weeks</td>
+                    <td>DPT</td>
+                    <td>{{ vaccination_lists["DPT"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["DPT"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["DPT"][2].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['HIB'][2].id }}" />
+                <tr>
+                    <td>HIB</td>
+                    <td>{{ vaccination_lists["HIB"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["HIB"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HIB"][2].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['HEP B'][2].id }}" />
+                <tr>
+                    <td>HEP B</td>
+                    <td>{{ vaccination_lists["HEP B"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][2].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['OPV'][3].id }}" />
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][3].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][3].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][3].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['PNEUMOCOCCAL'][2].id }}" />
+                <tr>
+                    <td>PNEUMOCOCCAL</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][2].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['ROTAVIRUS'][2].id }}" />
+                <tr>
+                    <td>ROTAVIRUS</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["ROTAVIRUS"][2].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['VIT A'][0].id }}" />
+
+                <tr>
+                    <td rowspan="2">6 Months</td>
+                    <td>VIT A</td>
+                    <td>{{ vaccination_lists["VIT A"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["VIT A"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["VIT A"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['MEASLES'][0].id }}" />
+                <tr>
+                    <td>MEASLES</td>
+                    <td>{{ vaccination_lists["MEASLES"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["MEASLES"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["MEASLES"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+            <form action="{{ url_for('app_views.vaccination_records', child_id=child.id) }}" method="POST">
+                <input type="hidden" name="record_id" value="{{ vaccination_lists['YELLOW FEVER'][0].id }}" />
+                <tr>
+                    <td>9 Months</td>
+                    <td>YELLOW FEVER</td>
+                    <td>{{ vaccination_lists["YELLOW FEVER"][0].administration_date}}</td>
+                    <td>{{ vaccination_lists["YELLOW FEVER"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["YELLOW FEVER"][0].confirmation_status }}</td>
+                    <td><button>update</button></td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+</body>
+
+</html>
+{% endblock %}

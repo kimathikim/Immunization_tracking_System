@@ -1,0 +1,99 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    background-color: #0056b3;
+    padding: 10px 0;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: #007bff;
+}
+
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Section styles */
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    margin-bottom: 10px;
+}
+
+/* Form styles */
+label {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #0056b3;
+    color: #fff;
+}

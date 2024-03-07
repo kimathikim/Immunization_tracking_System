@@ -1,0 +1,15 @@
+{% extends "baseTemp.html" %} {% block title %} reset Token {% endblock %} {%
+block content %}
+<body>
+  <div class="reset_container">
+    <h2>Forgot Password</h2>
+    <p>Enter your email address to reset your password.</p>
+
+    <form method="post">
+      <input type="email" name="email" placeholder="Email" required />
+      <button type="submit">Reset Password</button>
+    </form>
+  </div>
+</body>
+{% endblock %}
+

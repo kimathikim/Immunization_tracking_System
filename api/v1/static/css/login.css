@@ -1,0 +1,112 @@
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  background-color: #3498db;
+  color: #D1E7FF;
+  padding: 15px 50px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #D1E7FF;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 150px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.forgot-password,
+.signup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.forgot-password a,
+.signup a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.alert {
+  position: fixed;
+  top: -100px;
+  /* Initially hide the alert off-screen */
+  left: 50%;
+  transform: translateX(-80%);
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: top 0.5s ease-in;
+  /* Apply smooth transition for top position */
+}
+
+.alert.show {
+  top: 0px;
+  /* Show the alert by bringing it to the top */
+}
+
+/* Style for success alerts */
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+/* Style for error alerts */
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

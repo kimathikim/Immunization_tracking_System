@@ -1,0 +1,49 @@
+{% extends "baseTemp.html" %}
+{% block title%} Add Vaccination {% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <h2>Add Vaccination</h2>
+        <form id="vaccinationForm" class="vaccination-container" method="post" enctype="multipart/form-data">
+            <label for="vaccineName">Vaccine Name:</label>
+            <input type="text" name="names" id="vaccineName" required>
+            <label>No. of Doses:</label>
+            <input type="number" name="no_doses" required>
+
+            <div id="diseaseFields">
+                <div class="disease-field">
+                    <label>Disease:</label>
+                    <input type="text" name="disease[]" required>
+
+                    <label>Description:</label>
+                    <textarea name="disease_description[]" rows="4"></textarea>
+                </div>
+            </div>
+
+            <button type="button" id="addDiseaseBtn">Add Disease</button>
+
+            <button type="submit">Add Vaccination</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("addDiseaseBtn").addEventListener("click", function () {
+            var diseaseFields = document.getElementById("diseaseFields");
+            var newDiseaseField = document.createElement("div");
+            newDiseaseField.classList.add("disease-field");
+
+            newDiseaseField.innerHTML = `
+                <label>Disease:</label>
+                <input type="text" name="disease[]" required>
+                
+                <label>Description:</label>
+                <textarea name="disease_description[]" rows="4" required></textarea>
+            `;
+
+            diseaseFields.appendChild(newDiseaseField);
+        });
+    </script>
+</body>
+{% endblock %}

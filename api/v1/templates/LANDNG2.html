@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidebar Example</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+    }
+    #sidebar-menu {
+        background-color: #333;
+        color: #fff;
+        width: 250px; /* Adjust sidebar width as needed */
+    }
+    #sidebar-menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    #sidebar-menu ul li {
+        padding: 10px;
+        border-bottom: 1px solid #555;
+    }
+    #sidebar-menu ul li.menu-title {
+        font-weight: bold;
+        margin-top: 10px;
+        padding-top: 15px;
+        border-top: 1px solid #555;
+    }
+    #sidebar-menu ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .content {
+        flex: 1;
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+    <div id="sidebar-menu">
+        <ul id="side-menu">
+            <li class="menu-title">Dashboard</li>
+            <li>
+                <a href="link">
+                    <i class="ri-registered-fill"></i>
+                    <span>Practitioner Personal Profile</span>
+                </a>
+            </li>
+            <li class="menu-title mt-2">Patient immunization-record</li>
+            <li>
+                <a href="link">
+                    <i class="ri-registered-fill"></i>
+                    <span>Real Time Patients Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="link">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>Medical History</span>
+                </a>
+            </li>
+
+            <li class="menu-title mt-2">Vaccine-management</li>
+            <li>
+                <a href="link">
+                    <i class="ri-registered-fill"></i>
+                    <span>Vaccine-inventory</span>
+                </a>
+            </li>
+            <li>
+                <a href="link">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>Vaccine-information</span>
+                </a>
+            </li>
+
+            <li class="menu-title mt-2">Appointments And Reminders</li>
+            <li>
+                <a href="link">
+                    <i class="ri-registered-fill"></i>
+                    <span>Appointment-scheduling-tool</span>
+                </a>
+            </li>
+            <li>
+                <a href="link">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>Appointment Reminder</span>
+                </a>
+            </li>
+            <li class="menu-title mt-2">Education And Resources</li>
+            <li>
+                <a href="FAQs.html">
+                    <i class="ri-registered-fill"></i>
+                    <span>Quick Guides</span>
+                </a>
+            </li>
+            <li>
+                <a href="link">
+                    <i class="ri-git-pull-request-fill"></i>
+                    <span>Practicals</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- Your main content here -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Empowering Health Practitioners with Comprehensive Immunization Solutions</h1>
+                <p>Professional and reliable immunization services for better patient care.</p>
+            </div>
+            <div class="hero-image">
+                <img src="christian-bowen-I0ItPtIsVEE-unsplash (1).jpg">
+            </div>
+        </section>
+    </div>
+</body>
+</html>

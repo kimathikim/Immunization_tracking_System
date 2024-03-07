@@ -1,0 +1,36 @@
+{% extends "baseTemp.html" %}
+{% block title%} Parent Register {% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <h2>Parent Sign Up</h2>
+        <form id="signupForm" class="login-container" method="post">
+
+            <label for="firstName"> First Name:</label>
+            <input type="text" name="first_name" id="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="second_Name" id="lastName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone_number" required>
+
+            <label for="lastName">County:</label>
+            <input type="text" id="lastName" name="county" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" name="confirm_password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

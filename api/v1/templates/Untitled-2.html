@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Support Interface</title>
+    <style>
+        /* Basic CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        h1, h2 {
+            margin-top: 0;
+        }
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Support Interface</h1>
+    </header>
+
+    <section id="faq">
+        <h2>FAQ Section</h2>
+        <div id="faqContent"></div>
+    </section>
+
+    <section id="tutorials">
+        <h2>Tutorials and How-To Guides</h2>
+        <div id="tutorialsContent"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 User Support Interface</p>
+    </footer>
+
+    <script>
+        // Mock FAQ data
+        const faqData = {
+            "Account Management": [
+                "How do I create an account?",
+                "How can I update my personal information?",
+                "What should I do if I forget my password?"
+            ],
+            "Vaccination Records": [
+                "How do I view my vaccination history?",
+                "Can I add vaccination records for family members?",
+                "Why are some of my vaccination records not showing up?"
+            ],
+            "Appointment Scheduling": [
+                "How do I schedule a vaccination appointment?",
+                "Can I reschedule or cancel an existing appointment?",
+                "What should I do if there are no available appointment slots?"
+            ],
+            "Technical Support": [
+                "What should I do if I encounter an error message?",
+                "How can I troubleshoot issues with the system loading slowly?",
+                "Who do I contact for technical assistance?"
+            ]
+        };
+
+        // Mock tutorials data
+        const tutorialsData = [
+            {
+                title: "Creating an Account",
+                content: "Step-by-step guide to creating a user account."
+            },
+            {
+                title: "Updating Vaccination Records",
+                content: "Written guide on how to add or update vaccination records."
+            },
+            {
+                title: "Scheduling Appointments",
+                content: "How-to video illustrating how to schedule an appointment."
+            }
+        ];
+
+        // Function to display FAQ content
+        function displayFAQ() {
+            const faqContentDiv = document.getElementById('faqContent');
+            for (const category in faqData) {
+                const categoryHeading = document.createElement('h3');
+                categoryHeading.textContent = category;
+                faqContentDiv.appendChild(categoryHeading);
+                const categoryQuestions = document.createElement('ul');
+                faqData[category].forEach(question => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = question;
+                    categoryQuestions.appendChild(listItem);
+                });
+                faqContentDiv.appendChild(categoryQuestions);
+            }
+        }
+
+        // Function to display Tutorials content
+        function displayTutorials() {
+            const tutorialsContentDiv = document.getElementById('tutorialsContent');
+            tutorialsData.forEach(tutorial => {
+                const tutorialDiv = document.createElement('div');
+                const title = document.createElement('h3');
+                title.textContent = tutorial.title;
+                const content = document.createElement('p');
+                content.textContent = tutorial.content;
+                tutorialDiv.appendChild(title);
+                tutorialDiv.appendChild(content);
+                tutorialsContentDiv.appendChild(tutorialDiv);
+            });
+        }
+
+        // Call functions to display FAQ and Tutorials content
+        displayFAQ();
+        displayTutorials();
+    </script>
+</body>
+</html>
