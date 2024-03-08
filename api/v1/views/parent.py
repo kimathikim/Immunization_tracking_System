@@ -176,6 +176,8 @@ def parent_register():
         phone_number=phone_number,
         county=county,
     )
+    new_parent.save()
+    flash("Registration successful", category="Success")
     return redirect(url_for("app_views.parent_dashboard"))
 
 @app_views.route("/parent/login", methods=["POST", "GET"], strict_slashes=False)

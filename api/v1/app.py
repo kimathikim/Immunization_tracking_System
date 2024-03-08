@@ -69,7 +69,7 @@ def teardown_db(exception):
 @app.errorhandler(404)
 def page_not_found(error):
     """Return JSON formatted 404 status code response"""
-    return make_response(jsonify({"error": "not found"}), 404)
+    return render_template("404.html", error=error)
 
 
 if __name__ == "__main__":

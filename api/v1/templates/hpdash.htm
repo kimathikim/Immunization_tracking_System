@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <title>Responsive Navbar</title>
+</head>
+<style>
+  body {
+       margin: 0;
+       padding: 0;
+       max-width: 100%;
+       font-family: Arial, sans-serif;
+       background-color: #b7ccf7;
+       scroll-behavior: smooth;
+   }
+/*--------------Navigation bar start----------------------*/
+   .welcome-message {
+       text-align: center;
+       margin-bottom: 20px;
+       font-size: 24px;
+       font-weight: bold;
+       color: #fff;
+   }
+
+   .navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: blue;
+border-radius: 5px;
+color: #101010;
+font-family: 'Times New Roman', Times, serif;
+padding: 10px 20px;
+}
+
+.navbar .open-icon {
+display: none;
+cursor: pointer;
+}
+
+.navbar .open-icon .bar {
+width: 25px;
+height: 3px;
+background-color: white;
+margin: 4px 0;
+transition: 0.4s;
+}
+
+.navbar ul {
+display: flex;
+list-style: none;
+padding: 0;
+}
+
+.navbar li {
+margin-right: 20px;
+}
+
+.navbar a {
+color: white;
+margin-left: 5%;
+text-decoration: none;
+transition: 0.3s;
+}
+
+.navbar a:hover {
+color: #ddd;
+}
+
+.content {
+padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+.navbar .open-icon {
+display: block;
+}
+.navbar ul {
+display: none;
+flex-direction: column;
+background-color: blue;
+position: absolute;
+border-radius: 5px;
+top: 60px;
+width: 30%;
+padding: 10px 0;
+z-index: 1000;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.navbar ul.active {
+display: flex;
+}
+
+.navbar li {
+margin: 10px 0;
+}
+.chart-container {
+border: 1px solid #ccc;
+border-radius: 5px;
+padding: 30px;
+height:300px;
+width: 350px;
+display: grid;
+grid: 10px;
+margin-left: 6%;
+justify-content: space-around;
+background-color: #B7B3DA;
+}
+}
+.profile-photo img {
+       width: 40px;
+       height: 40px;
+       border-radius: 50%;
+       margin-right: 10px;
+   }
+/*--------------Navigation bar start----------------------*/
+#summaryChart, #appointmentsChart, #statusChart, #diseaseChart, #healthTrendsChart, #calender-table{
+  width: 200px;
+  height: 250px;
+  margin-bottom: 15%;
+}
+/*--------------div1 start----------------------*/
+/*--------------div1 end----------------------*/
+/*--------------div2 start----------------------*/
+#div2 {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 20px;
+padding: 10px;
+justify-content: space-around;
+}
+
+/*.chart-container {
+border: 1px solid #ccc;
+border-radius: 5px;
+padding: 5px;
+height:400px;
+width: 300px;
+flex: 1;
+display: grid;
+justify-content: space-around;
+background-color: #B7B3DA;
+}
+/*--------------div2 end----------------------*/
+/*--------------div3  start----------------------*/
+#div3 {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+gap: 20px;
+padding: 10px;
+justify-content: space-around;
+}
+
+.chart-container {
+border: 1px solid #ccc;
+border-radius: 5px;
+padding: 30px;
+height:300px;
+width: 370px;
+display: grid;
+grid: 10px;
+justify-content: space-around;
+background-color: #B7B3DA;
+}
+#calender{
+border-radius: 5px;
+width: 370px;
+height:300px;
+    padding: 10px;
+    display: grid;
+grid: 10px;
+justify-content: space-around;
+background-color: #B7B3DA;
+}
+   .center {
+margin: 0 auto; /* This centers the table horizontally */
+width: 200px; /* This makes the table width fit its content */
+height: 300px;
+}
+
+/* Additional styling for the table cells, you can modify as needed */
+#calendar-table {
+border-collapse: collapse;
+width: 50%;
+height: 30%;
+margin-bottom: 3%;
+border-radius: 5px;
+background-color: #fff;
+}
+
+#calendar-table th, #calendar-table td {
+text-align: center;
+padding: 10px;
+border: 1px solid #101010;
+}
+
+#calendar-table th {
+background-color: #6411e9;
+color: white;
+font-weight: bold;
+}
+
+#calendar-table td:hover {
+background-color: #6411e9;
+color: white;
+}
+
+.today {
+background-color:gold;
+color: blue;
+font-weight: bold;
+border-radius: 50%;
+}
+
+.selected {
+background-color: gold;
+color: white;
+border-radius: 40%;
+}
+
+.day {
+width: 14.28%;
+box-sizing: border-box;
+border: 2px solid #101010;
+padding: 10px;
+text-align: center;
+}
+
+   .booked {
+       background-color: #FFC0CB; /* Light pink, adjust as needed */
+   }
+   h1 {
+       font-size: 18px;
+       margin-bottom: 10px;
+       text-align: center;
+       font-family: 'Times New Roman', Times, serif;
+   }
+
+/*--------------div3 end----------------------*/
+
+
+</style>
+<body>
+  <nav>
+    <div class="navbar" id="navbar">
+      <div class="open-icon" onclick="toggleNavbar()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="nav.htm">Dashboard</a></li>
+        <li><a href="healthpprofile.htm">Profile</a></li>
+        <li><a href="hpappointments.htm">Appointments</a></li>
+        <li><a href="medicationhp.htm">Medication</a></li>
+        <li><a href="resetp1.htm">Change Password</a></li>
+      </ul>
+      <div class="welcome-message" id="welcomeMessage">Welcome, Health Practitioner</div>
+    </div>
+  </nav>
+  <section id="main-container">
+    <!----------------div1start------------------------------------->
+    <div id="div1"></div>
+    <!----------------div1 end------------------------------------->
+    <!----------------div12start------------------------------------->
+    <div id="div2">
+            <div class="chart-container">
+                <h1>Patients Summary Comments</h1>
+              <canvas id="summaryChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h1>Appointment Status</h1>
+              <canvas id="appointmentsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h1>Patient's Status</h1>
+              <canvas id="statusChart"></canvas>
+            </div>
+    </div>
+    <!----------------div2 end------------------------------------->
+    <!----------------div3start------------------------------------->
+    <div id="div3">
+          <div class="chart-container">
+            <h1>Disease Visualization</h1>
+            <canvas id="diseaseChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h1>Health Trends</h1>
+            <canvas id="healthTrendsChart"></canvas>
+          </div>
+          <div id="calendar" style="background-color: #B7B3DA;border-radius: 5px; width: 85%; height: 100%;margin-left: 6%;">
+            <h1 style="text-align: center; top: 10%;">Calendar</h1>
+            <!-- Add your content for Calendar here -->
+            <table id="calendar-table" class="center" style="width: 30%;height: 50%;">
+              <thead>
+                <tr>
+                  <th colspan="7" id="month-year"></th>
+                </tr>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>12</td>
+                  <td>13</td>
+                  <td>14</td>
+                  <td>15</td>
+                  <td>16</td>
+                  <td>17</td>
+                </tr>
+                <tr>
+                  <td>18</td>
+                  <td>19</td>
+                  <td>20</td>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>_</td>
+                  <td>_</td>
+                </tr>
+                <!-- ... continue the table for the rest of the month -->
+              </tbody>
+            </table>
+          </div>
+          
+    </div>
+    <!----------------div3end------------------------------------->
+  </section>
+  <script>
+    function toggleNavbar() {
+  var navLinks = document.getElementById("navLinks");
+  navLinks.classList.toggle("active");
+}
+ </script>
+ <!---------------------div2start-------------------------->
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Data for charts
+  const summaryData = {
+    labels: ['Excellent', 'Good', 'Poor'],
+    datasets: [{
+      label: 'Patient Summary',
+      data: [30, 50, 20],
+      backgroundColor: ['#6411e9', 'gold', 'navy'],
+    }]
+  };
+
+  const appointmentsData = {
+    labels: ['Successful', 'Pending', 'Postponed'],
+    datasets: [{
+      label: 'Appointments',
+      data: [40, 30, 30],
+      backgroundColor: ['purple', '#6411e9', 'navy'],
+    }]
+  };
+
+  const statusData = {
+    labels: ['Average Age', 'Common Diseases', 'Total Patients', 'Recovery Status'],
+    datasets: [{
+      label: 'Patient Status',
+      data: [35, 25, 50, 40],
+      backgroundColor: ['gold', 'navy', '#6411e9', 'purple'],
+    }]
+  };
+
+  // Options for charts
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      position: 'right',
+    }
+  };
+
+  // Create Summary Chart
+  const summaryCtx = document.getElementById('summaryChart').getContext('2d');
+  new Chart(summaryCtx, {
+    type: 'doughnut',
+    data: summaryData,
+    options: options
+  });
+
+  // Create Appointments Chart
+  const appointmentsCtx = document.getElementById('appointmentsChart').getContext('2d');
+  new Chart(appointmentsCtx, {
+    type: 'doughnut',
+    data: appointmentsData,
+    options: options
+  });
+
+  // Create Status Chart
+  const statusCtx = document.getElementById('statusChart').getContext('2d');
+  new Chart(statusCtx, {
+    type: 'doughnut',
+    data: statusData,
+    options: options
+  });
+});
+
+ </script>
+ <!---------------------div2end-------------------------->
+ <!---------------------div3start-------------------------->
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Data for charts
+  const diseaseData = {
+    labels: ['Flu', 'Cold', 'Allergy', 'COVID-19', 'Other'],
+    datasets: [{
+      label: 'Number of Cases',
+      data: [50, 30, 20, 80, 15],
+      backgroundColor: '#6411e9',
+    }]
+  };
+
+  const healthTrendsData = {
+    labels: ['Affected Age Group', 'Not Affected Age Group', 'Male', 'Female'],
+    datasets: [{
+      label: 'Health Trends',
+      data: [50, 50, 60, 40],
+      backgroundColor: ['navy', '#6411e9', 'gold', 'purple'],
+    }]
+  };
+
+  // Options for charts
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      display: false,
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+        }
+      }]
+    }
+  };
+
+  // Create Disease Chart (Histogram)
+  const diseaseCtx = document.getElementById('diseaseChart').getContext('2d');
+  new Chart(diseaseCtx, {
+    type: 'bar',
+    data: diseaseData,
+    options: {
+      ...options,
+      scales: {
+        xAxes: [{
+          barPercentage: 0.5,
+          categoryPercentage: 0.5,
+        }],
+        yAxes: [{
+          ticks: {
+            stepSize: 10,
+            beginAtZero: true,
+          }
+        }]
+      }
+    }
+  });
+
+  // Create Health Trends Chart (Bar Chart)
+  const healthTrendsCtx = document.getElementById('healthTrendsChart').getContext('2d');
+  new Chart(healthTrendsCtx, {
+    type: 'bar',
+    data: healthTrendsData,
+    options: options
+  });
+});
+
+ </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Your chart creation code here...
+
+  // Calendar functionality
+  const currentDate = new Date();
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const tbody = document.querySelector('#calendar-table tbody');
+
+  function generateCalendar(month, year) {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayIndex = new Date(year, month, 1).getDay();
+    tbody.innerHTML = '';
+
+    document.getElementById('month-year').textContent = `${months[month]} ${year}`;
+
+    let date = 1;
+    for (let i = 0; i < 6; i++) {
+      const row = document.createElement('tr');
+      for (let j = 0; j < 7; j++) {
+        if (i === 0 && j < firstDayIndex) {
+          const cell = document.createElement('td');
+          row.appendChild(cell);
+        } else if (date > daysInMonth) {
+          break;
+        } else {
+          const cell = document.createElement('td');
+          cell.textContent = date;
+          if (date === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
+            cell.classList.add('today');
+          }
+          row.appendChild(cell);
+          date++;
+        }
+      }
+      tbody.appendChild(row);
+    }
+  }
+
+  // Example: Generate calendar for February 2024 (you can adjust this as needed)
+  generateCalendar(1, 2024); // Month is zero-based, so 1 is February
+
+  // Your other chart creation code...
+});
+
+</script>
+ <!---------------------div3end-------------------------->
+</body>
+</html>

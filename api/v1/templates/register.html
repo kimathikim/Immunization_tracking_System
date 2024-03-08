@@ -2,21 +2,46 @@
 {% block title%} Parent Register {% endblock %}
 
 {% block content %}
+
+<head>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css' ) }}" />
+  <style>
+    /* .header {
+      position: fixed;
+      width: 100%;
+      padding: 0;
+      margin-left: -2%;
+      background-color: #3498db;
+      color: #D1E7FF;
+      padding: 11px;
+    } */
+
+    /* .container {
+      max-width: 800px;
+      margin: auto;
+      margin-top: 40px;
+      padding: 100px;
+      background-color: #f2f6fa;
+    } */
+  </style>
+</head>
+
 <body>
   <div class="container">
     <h2>Admin Sign up</h2>
     <form id="signupForm" class="login-container" method="post" enctype="multipart/form-data">
-    
+
       <label for="profilePicture">Profile Picture:</label>
       <input type="file" id="profilePicture" name="profile_picture" required>
 
-       <label for="firstName"> First Name:</label>
+      <label for="firstName"> First Name:</label>
       <input type="text" name="first_name" id="firstName" required>
 
       <label for="lastName">Last Name:</label>
       <input type="text" name="second_Name" id="lastName" required>
 
-      <label for="email">Email:</label> 
+      <label for="email">Email:</label>
       <input type="email" name="email" id="email" required>
 
       <label for="idNo">ID Number:</label>
@@ -27,9 +52,6 @@
 
       <label for="address" id="addressLabel" style="display:none;">Home County:</label>
       <input type="text" id="address" name="county" style="display: none;">
-
-      <label for="specialization" id="specializationLabel">Specialization:</label>
-      <input type="text" id="specialization" name="specification" style="display: none;">
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>

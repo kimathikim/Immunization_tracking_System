@@ -1,36 +1,173 @@
 {% extends "baseTemp.html" %}
 {% block title%} Parent Register {% endblock %}
 
+
 {% block content %}
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css' ) }}" />
+    <title>Parent Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            margin-top: 40px;
+            padding: 100px;
+            background-color: #f2f6fa;
+        }
+
+        .header {
+            top: 0;
+            position: fixed;
+            width: 97.6vw;
+            margin-right: 50%;
+            background-color: #3498db;
+            color: #D1E7FF;
+            padding: 11px;
+
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .search-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-results {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
 <body>
-    <div class="container">
-        <h2>Parent Sign Up</h2>
-        <form id="signupForm" class="login-container" method="post">
+    <div>
+        <nav class="navbar header">
+            <div class="navbar-nav">
+                <a id="login" href="/api/v1/practitioner/login">Logout</a>
+            </div>
 
-            <label for="firstName"> First Name:</label>
-            <input type="text" name="first_name" id="firstName" required>
 
-            <label for="lastName">Last Name:</label>
-            <input type="text" name="second_Name" id="lastName" required>
+            <div class="collapse navbar-collapse" id="navbar">
+                <div id="toggle-btn">&#9776;</div>
+                <div id="sidebar-menu"><br><br>
+                    <ul id="side-menu">
+                        <li class="menu-title">Dashboard</li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Practitioner Personal Profile</span>
+                            </a>
+                        </li>
+                        <li class="menu-title mt-2">Immunization-record</li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Immunization-record</span>
+                            </a>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('/api/v1/practitioner/search')">
+                                <i class="ri-registered-fill"></i>
+                                <span>Parent Search</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('/api/v1/pract/parent/register')">
+                                <i class="ri-git-pull-request-fill"></i>
+                                <span>Register Parent</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadPage('link')">
+                                <i class="ri-git-pull-request-fill"></i>
+                                <span>Practicals</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone_number" required>
+        <body>
+            <div class="container">
+                <h2>Parent Registration</h2>
+                <form id="signupForm" class="login-container" method="post">
 
-            <label for="lastName">County:</label>
-            <input type="text" id="lastName" name="county" required>
+                    <label for="firstName"> First Name:</label>
+                    <input type="text" name="first_name" id="firstName" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" name="second_Name" id="lastName" required>
 
-            <label for="confirmPassword">Confirm password</label>
-            <input type="password" id="confirmPassword" name="confirm_password" required>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required>
 
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
-</body>
-{% endblock %}
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone_number" required>
+
+                    <label for="lastName">County:</label>
+                    <input type="text" id="lastName" name="county" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="confirmPassword">Confirm password</label>
+                    <input type="password" id="confirmPassword" name="confirm_password" required>
+
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <script>
+                document.getElementById('toggle-btn').addEventListener('click', function () {
+                    var sidebar = document.getElementById('sidebar-menu');
+                    if (sidebar.style.left === '0px') {
+                        sidebar.style.left = '-260px';
+                    } else {
+                        sidebar.style.left = '0px';
+                    }
+                });
+                function loadPage(url) {
+                    window.location.href = url;
+                }
+            </script>
+
+        </body>
+        {% endblock %}

@@ -3,6 +3,13 @@
       margin: 0;
       background-color: #D1E7FF;
       padding: 0;
+
+      background-color: rgb(164, 206, 248);
+      margin: 0;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+
   }
 
   #sidebar-menu {
@@ -11,7 +18,7 @@
       position: fixed;
       top: 35px;
       left: -260px;
-      height: 100%;
+      height: 1500%;
       /* Initially hide the sidebar */
       overflow-y: auto;
       transition: left 0.4s ease;
@@ -35,6 +42,7 @@
       color: #130c0c;
       text-decoration: none;
       display: block;
+      position: relative;
   }
 
   #side-menu li:hover {
@@ -69,11 +77,11 @@
 
   /* Toggle button styles */
   #toggle-btn {
-      position: fixed;
+      position: absolute;
       top: 0px;
       left: 0px;
-      background-color: #7081ee;
-      color: #101010;
+      background-color: #4059e4;
+      color: #ffffff;
       padding: 10px;
       cursor: pointer;
       z-index: 999;
@@ -106,119 +114,62 @@
       margin-left: 60px;
   }
 
-  header {
+  h1 {
+      text-align: center;
+      margin-bottom: 20px;
+  }
+
+  .container-d {
+      max-width: 90%;
+      margin: 45px auto;
+      padding: 20px 30px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      align-items: center;
+      height: 80vh;
+      display: block;
+  }
+
+  .header {
       position: fixed;
       top: 0;
-      width: 95vw;
-
+      width: 99%;
       background-color: #3498db;
       color: #D1E7FF;
-      padding: 15px 50px;
-      float: right;
-
+      padding: 11px;
   }
 
   .navbar-nav a {
       float: right;
   }
 
-  /* body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #D1E7FF;
-      padding: 0;
-  } */
-
-  /* .container {
-      max-width: 800px;
-      margin: 150px auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-  } */
-
-  /* h1 {
-      text-align: center;
+  .profile-info {
       margin-bottom: 20px;
   }
 
-  form {
-      max-width: 600px;
-      margin: 0 auto;
-  }
-
-  label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-  } */
-
-  /* input[type="text"],
-  input[type="date"],
-  input[type="tel"] {
-      width: 100%;
-      padding: 8px;
+  .profile-info h2 {
       margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-  } */
-
-  input[type="submit"] {
-      background-color: #4caf50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
   }
 
-  input[type="submit"]:hover {
-      background-color: #45a049;
+  .profile-info p {
+      margin: 5px 0;
   }
 
-  /* .forgot-password,
-  .signup {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-      margin-bottom: 30px;
-  }
-
-  .forgot-password a,
-  .signup a {
-      color: #3498db;
-      text-decoration: none;
-  } */
-
-  .alert {
-      position: fixed;
-      top: -100px;
-      /* Initially hide the alert off-screen */
-      left: 50%;
-      transform: translateX(-80%);
-      padding: 15px;
+  .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
       margin-bottom: 20px;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      transition: top 0.5s ease-in;
-      /* Apply smooth transition for top position */
   }
 
-  .alert.show {
-      top: 0px;
-      /* Show the alert by bringing it to the top */
+  .profile-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
   }
 
-  /* Style for success alerts */
-  .alert-success {
-      color: #155724;
-      background-color: #d4edda;
-      border-color: #c3e6cb;
-  }
-
-  /* Style for error alerts */
   .alert-danger {
       color: #721c24;
       background-color: #f8d7da;

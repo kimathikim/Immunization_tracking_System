@@ -7,93 +7,94 @@ Admin Dashboard
 {% block content %}
 
 <head>
-<link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css') }}/>
-  </head>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css' ) }}" />
+</head>
+
 <body>
-  
+
   <div id="toggle-btn">&#9776;</div>
-    <div id="sidebar-menu"><br><br>
-        <ul id="side-menu">
-            <li class="menu-title">Dashboard</li>
-            <li>
-                <a href="link">
-                    <i class="ri-registered-fill"></i>
-                    <span>Admin Personal Profile</span>
-                </a>
-            </li>
-            <li class="menu-title mt-2">Practitioner</li>
-            <li>
-              <a href="/api/v1/practitioner/register">
-                    <i class="ri-registered-fill"></i>
-                    <span>Add Practitioner</span>
-                </a>
-            </li>
-            <li class="menu-title mt-2">vaccine management</li>
-            <li>
-              <a href="/api/v1/admin/vaccine">
-                <i class="ri-registered-fill"></i>
-                <span>Add vaccine</span>
-              </a>
-            </li>
+  <div id="sidebar-menu"><br><br>
+    <ul id="side-menu">
+      <li class="menu-title">Dashboard</li>
+      <li>
+        <a href="link">
+          <i class="ri-registered-fill"></i>
+          <span>Admin Personal Profile</span>
+        </a>
+      </li>
+      <li class="menu-title mt-2">Practitioner</li>
+      <li>
+        <a href="/api/v1/practitioner/register">
+          <i class="ri-registered-fill"></i>
+          <span>Add Practitioner</span>
+        </a>
+      </li>
+      <li class="menu-title mt-2">vaccine management</li>
+      <li>
+        <a href="/api/v1/admin/vaccine">
+          <i class="ri-registered-fill"></i>
+          <span>Add vaccine</span>
+        </a>
+      </li>
 
-        </ul>
-    </div>
- <div class="content">
+    </ul>
+  </div>
+  <div class="content">
 
-  <section class="hero">
+    <section class="hero">
 
-    <div class="hero-content">
+      <div class="hero-content">
 
-      <h1>Streamline Immunization Management for Your Hospital</h1>
+        <h1>Streamline Immunization Management for Your Hospital</h1>
 
-      <h2>Ensure accurate immunization records and scheduling for all your patients.</h2>
+        <h2>Ensure accurate immunization records and scheduling for all your patients.</h2>
 
-      <div class="hero-image">
-        <img src="doctor-with-tablet.jpg"> 
+        <div class="hero-image">
+          <img src="doctor-with-tablet.jpg">
+        </div>
+
       </div>
 
-    </div>
+    </section>
 
-  </section>
+    <section class="services">
 
-  <section class="services">
+      <h2>Our Immunization Tracking System Provides</h2>
 
-    <h2>Our Immunization Tracking System Provides</h2>
+      <ul>
+        <li>Digital immunization records for easy access and tracking</li>
+        <li>Reminders for upcoming immunizations due</li>
+        <li>Inventory management for vaccines and supplies</li>
+        <li>Reports on immunization coverage rates</li>
+        <li>Integration with hospital EMR system</li>
+      </ul>
 
-    <ul>
-      <li>Digital immunization records for easy access and tracking</li>
-      <li>Reminders for upcoming immunizations due</li>  
-      <li>Inventory management for vaccines and supplies</li>
-      <li>Reports on immunization coverage rates</li>
-      <li>Integration with hospital EMR system</li>
-    </ul>
+    </section>
 
-  </section>
-  
-  <section class="benefits">
-  
-    <h2>Benefits for Your Hospital</h2>
-    
-    <ul>
-      <li>Improved immunization compliance</li>
-      <li>Better reporting to public health agencies</li> 
-      <li>Increased revenue with billing automation</li>
-    </ul>
+    <section class="benefits">
 
-  </section>
-  
-</div>
-    <script>
-        document.getElementById('toggle-btn').addEventListener('click', function() {
-            var sidebar = document.getElementById('sidebar-menu');
-            if (sidebar.style.left === '0px') {
-                sidebar.style.left = '-260px';
-            } else {
-                sidebar.style.left = '0px';
-            }
-        });
-    </script>
+      <h2>Benefits for Your Hospital</h2>
+
+      <ul>
+        <li>Improved immunization compliance</li>
+        <li>Better reporting to public health agencies</li>
+        <li>Increased revenue with billing automation</li>
+      </ul>
+
+    </section>
+
+  </div>
+  <script>
+    document.getElementById('toggle-btn').addEventListener('click', function () {
+      var sidebar = document.getElementById('sidebar-menu');
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-260px';
+      } else {
+        sidebar.style.left = '0px';
+      }
+    });
+  </script>
 
 </body>
 {% endblock %}
-

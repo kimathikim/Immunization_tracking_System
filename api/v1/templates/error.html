@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practitioner Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .profile-info {
+      margin-bottom: 20px;
+    }
+
+    .profile-info h2 {
+      margin-bottom: 10px;
+    }
+
+    .profile-info p {
+      margin: 5px 0;
+    }
+
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .profile-picture img {
+      width: 100%;
+      /* Make the image fill the container */
+      height: 100%;
+      /* Make the image fill the container */
+      object-fit: cover;
+      /* Maintain aspect ratio and cover the container */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Practitioner Profile</h1>
+    <div class="profile-picture">
+      <img src="https://assets-global.website-files.com/5ee7039040ea6efb80d7521c/5fe0834d9185d941c1f5bd12_Immunisation-Guide-for-Your-Baby.jpg" alt="Profile Picture">
+    </div>
+    <div class="profile-info">
+      <h2>Personal Information</h2>
+      <p><strong>Name:</strong> {{ practitioner.name }}</p>
+      <p><strong>Email:</strong> {{ practitioner.email }}</p>
+      <p><strong>Phone:</strong> {{ practitioner.phone }}</p>
+    </div>
+    <div class="profile-info">
+      <h2>Professional Information</h2>
+      <p><strong>Specialization:</strong> {{ practitioner.specialization }}</p>
+      <p><strong>License Number:</strong> {{ practitioner.license_number }}</p>
+</body>
+ </div>
+    <!-- Add more sections for additional information if necessary -->
+  </div>
+</html>

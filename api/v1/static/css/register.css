@@ -37,3 +37,32 @@ button {
   width: 250px;
   background-color: lightslategray;
 }
+.alert {
+  position: fixed;
+  top: -100px;
+  /* Initially hide the alert off-screen */
+  left: 50%;
+  transform: translateX(-80%);
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: top 0.5s ease-in;
+  z-index: 1000;
+}
+
+.alert.show {
+  top: 0px;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

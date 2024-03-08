@@ -4,12 +4,12 @@
 # import models
 from models.base_model import Base, BaseModel
 from sqlalchemy import INT, Column, String, DateTime
-from flask_login import UserMixin
+
 
 # from sqlalchemy.orm import relationship
 
 
-class Practitioner(UserMixin, BaseModel, Base):
+class Practitioner( BaseModel, Base):
     """Representation of health practitioner"""
 
     __tablename__ = "health_practitioner"

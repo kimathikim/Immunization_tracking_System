@@ -8,20 +8,16 @@ Practitioner Dashboard
 
 <head>
     <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+
 </head>
-<style>
-    #navbar {
-        margin-left: 2800%;
-    }
-</style>
 
 <body>
-    <header>
-        <nav class="navbar">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" id="login" href="/api/v1/practitioner/login">Logout</a>
-                </div>
-    
+    <div>
+        <nav class="navbar header">
+            <div class="navbar-nav">
+                <a id="login" href="/api/v1/practitioner/login">Logout</a>
+            </div>
+
 
             <div class="collapse navbar-collapse" id="navbar">
                 <div id="toggle-btn">&#9776;</div>
@@ -54,53 +50,6 @@ Practitioner Dashboard
                                 <span>Register Parent</span>
                             </a>
                         </li>
-
-                        <!-- 
-<li>
-                            <a href="javascript:void(0);" onclick="loadPage('zz.html')">
-                                <i class="ri-git-pull-request-fill"></i>
-                                <span>childs Info</span>
-                            </a>
-                        </li>
-
-                        <li class="menu-title mt-2">Vaccine-management</li>
-                        <li>
-                            <a href="javascript:void(0);" onclick="loadPage('link')">
-                                <i class="ri-registered-fill"></i>
-                                <span>Vaccine-inventory</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" onclick="loadPage('link')">
-                                <i class="ri-git-pull-request-fill"></i>
-                                <span>Vaccine-information</span>
-                            </a>
-                        </li>
-
-                        <li class="menu-title mt-2">Appointments And Reminders</li>
-                        <li>
-                            <a href="javascript:void(0);" onclick="loadPage('link')">
-                                <i class="ri-registered-fill"></i>
-                                <span>Appointment-scheduling-tool</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" onclick="loadPage('link')">
-                                <i class="ri-git-pull-request-fill"></i>
-                                <span>Appointment Reminder</span>
-                            </a>
-                        </li>
-                        <li class="menu-title mt-2">Education And Resources</li>
-                        <li>
-                            <a href="javascript:void(0);" onclick="loadPage('FAQs.html')">
-                                <i class="ri-registered-fill"></i>
-                                <span>Quick Guides</span>
-                            </a> -->
-                        <!-- <ul class="submenu">
-                                <li><a href="#">Submenu Item 1</a></li>
-                                <li><a href="#">Submenu Item 2</a></li>
-                            </ul> -->
-                        </li>
                         <li>
                             <a href="javascript:void(0);" onclick="loadPage('link')">
                                 <i class="ri-git-pull-request-fill"></i>
@@ -110,34 +59,40 @@ Practitioner Dashboard
                     </ul>
                 </div>
         </nav>
-    </header>
-    <div>
-        <!-- Your main content here -->
-        <section>
-            <div>
-                <h1>Empowering Health Practitioners with<br> Immunization Solutions</h1>
-                <h2>Professional and reliable immunization<br>services for better patient care.</h2>
-                <!-- <div class="hero-image">
-                    <img src="" alt="hero-image">
-                </div>
-            </div> -->
-
-        </section>
     </div>
+    <div class="container-d">
+        <h1>Practitioner Profile</h1>
+        <div class="profile-picture"i>
+            <img src="https://assets-global.website-files.com/5ee7039040ea6efb80d7521c/5fe0834d9185d941c1f5bd12_Immunisation-Guide-for-Your-Baby.jpg"
+                alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+            <h2>Personal Information</h2>
+            <p><strong>Name:</strong> {{ practitioner.name }}</p>
+            <p><strong>Email:</strong> {{ practitioner.email }}</p>
+            <p><strong>Phone:</strong> {{ practitioner.phone }}</p>
+            <!-- Add more personal information fields as needed -->
+        </div>
+        <div class="profile-info">
+            <h2>Professional Information</h2>
+            <p><strong>License Number:</strong> {{ practitioner.license_number }}</p>
+            <!-- Add more professional information fields as needed -->
 
-    <script>
-        document.getElementById('toggle-btn').addEventListener('click', function () {
-            var sidebar = document.getElementById('sidebar-menu');
-            if (sidebar.style.left === '0px') {
-                sidebar.style.left = '-260px';
-            } else {
-                sidebar.style.left = '0px';
-            }
-        });
-        function loadPage(url) {
-            window.location.href = url;
+</body>
+
+<script>
+    document.getElementById('toggle-btn').addEventListener('click', function () {
+        var sidebar = document.getElementById('sidebar-menu');
+        if (sidebar.style.left === '0px') {
+            sidebar.style.left = '-260px';
+        } else {
+            sidebar.style.left = '0px';
         }
-    </script>
+    });
+    function loadPage(url) {
+        window.location.href = url;
+    }
+</script>
 
 </body>
 {% endblock %}

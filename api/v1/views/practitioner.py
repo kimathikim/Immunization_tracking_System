@@ -200,7 +200,7 @@ def practitioner_dashboard():
         return redirect(url_for("app_views.login_practitioner"))   
     session.expiration_time = datetime.utcnow() + timedelta(minutes=2)
     storage.save()
-    return render_template("dashboard.html")
+    return render_template("dashboard.html", practitioner=None)
 
 
 @app_views.route(
@@ -450,7 +450,9 @@ def parent_regist():
     second_Name = request.form.get("second_Name")
     phone_number = request.form.get("phone_number")
     county = request.form.get("county")
-
+    if storage.get_by_email(email):
+        flash("The email has already been used!!!", category="error")
+        return redirect(url_for("app_views.parent_regist"))
     patterns = {
         "email": r"^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$",
         "password": r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
@@ -490,6 +492,7 @@ def parent_regist():
         phone_number=phone_number,
         county=county,
     )
+    
     new_parent.save()
     return redirect(url_for("app_views.practitioner_dashboard"))
 

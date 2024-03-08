@@ -1,283 +1,408 @@
 {% extends "login.html" %} {% block title%} practitioner register {% endblock %}
 {% block content %}
 <title>Immunization Record</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-    }
 
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+<head>
 
-    table {
-        width: 100%;
-        margin-left: 0%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
+    <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css' ) }}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
 
-    th,
-    td {
-        padding: 10px;
-        border-bottom: 1px solid #586cff;
-        text-align: center;
-    }
+        .container {
+            max-width: 90%;
+            top: 0;
+            margin: 45px auto;
+            padding: 20px 30px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            align-items: center;
 
-    th {
-        background-color: #3d5dc5;
-    }
+            display: block;
+        }
 
-    .birth {
-        color: blue;
-    }
+        .header {
+            margin-left: -20px;
+        }
 
-    .confirmed {
-        color: green;
-    }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .pending {
-        color: orange;
-    }
+        .container {
+            top: 0;
+        }
 
-    .cancelled {
-        color: red;
-    }
-</style>
-<title>Vaccination Schedule</title>
+        table {
+            width: 100%;
+            margin-left: 0%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #586cff;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3d5dc5;
+        }
+
+        .birth {
+            color: blue;
+        }
+
+        .confirmed {
+            color: green;
+        }
+
+        .pending {
+            color: orange;
+        }
+
+        .cancelled {
+            color: red;
+        }
+    </style>
+
+    <title>Vaccination Schedule</title>
 </head>
 
 
 
 
 <body>
+    <nav class="navbar header">
+        <div class="navbar-nav">
+            <a id="login" href="/api/v1/parent/login">Logout</a>
+        </div>
 
-    <h1>Immunization Record for {{ child.first_name }}</h1>
-    <table border="1">
+        <div class="collapse navbar-collapse" id="navbar" style="margin: 20px;">
+            <div class="navbar-nav" id="toggle-btn">&#9776;</div>
+            <div id="sidebar-menu"><br><br>
+                <ul id="side-menu">
+                    <li class="menu-title">Dashboard</li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="loadPage('link')">
+                            <i class="ri-registered-fill"></i>
+                            <span>Parent Personal Profile</span>
+                        </a>
+                    </li>
+                    <li class="menu-title mt-2">Immunization-records</li>
+                    <li>
+                        {% if children %}
+                        {% for child in children %}
+                    <li>
+                        <a href="{{ url_for('app_views.immunization_record', child_id=child.id) }}">
+                            <i class="ri-registered-fill"></i>
+                            <span>{{child.first_name}}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% else %}
+                    <li>
+                        <a href="javascript:void(0);" onclick="loadPage('link')">
+                            <i class="ri-registered-fill"></i>
+                            <span>Immunization-record</span>
+                        </a>
+                    </li>
+                    {% endif %}
 
-        <tbody>
-            <tr>
-                <th>Age</th>
+                    </li>
+                    <li>
+                    <li class="menu-title mt-2">Vaccine-management</li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="loadPage('link')">
+                            <i class="ri-registered-fill"></i>
+                            <span>Vaccine-inventory</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                                <a href="javascript:void(0);" onclick="loadPage('link')">
+                                    <i class="ri-git-pull-request-fill"></i>
+                                    <span>Vaccine-information</span>
+                                </a>
+                            </li>
+    
+                            <li class="menu-title mt-2">Appointments And Reminders</li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="loadPage('link')">
+                                    <i class="ri-registered-fill"></i>
+                                    <span>Appointment-scheduling-tool</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="loadPage('link')">
+                                    <i class="ri-git-pull-request-fill"></i>
+                                    <span>Appointment Reminder</span>
+                                </a>
+                            </li>
+                            <li class="menu-title mt-2">Education And Resources</li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="loadPage('FAQs.html')">
+                                    <i class="ri-registered-fill"></i>
+                                    <span>Quick Guides</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#">Submenu Item 1</a></li>
+                                    <li><a href="#">Submenu Item 2</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="loadPage('link')">
+                                    <i class="ri-git-pull-request-fill"></i>
+                                    <span>Practicals</span>
+                                </a>
+                            </li> -->
+                </ul>
+            </div>
+    </nav>
+    </header>
+    <div class="container">
+        <h1>Immunization Record for {{ child.first_name }}</h1>
+        <table border="1">
 
-                <th>Vaccine</th>
-                <th>Date Admininistered</th>
-                <th>Doctor</th>
-                <th>Status</th>
+            <tbody>
+                <tr>
+                    <th>Age</th>
 
-                </th>
-            </tr>
+                    <th>Vaccine</th>
+                    <th>Date Admininistered</th>
+                    <th>Doctor</th>
+                    <th>Status</th>
 
-            <tr>
-                <td rowspan="3">At Birth</td>
-                <td>BCG</td>
-                <td>{{ vaccination_lists["BCG"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["BCG"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["BCG"][0].confirmation_status }}</td>
+                    </th>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td rowspan="3">At Birth</td>
+                    <td>BCG</td>
+                    <td>{{ vaccination_lists["BCG"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["BCG"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["BCG"][0].confirmation_status }}</td>
 
-            <tr>
-                <td>OPV</td>
-                <td>{{ vaccination_lists["OPV"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["OPV"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["OPV"][0].confirmation_status }}</td>
+                </tr>
 
-            </tr>
-            </form>
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][0].confirmation_status }}</td>
 
-            <tr>
-                <td>
-                    HEP B
-                </td>
-                <td>{{ vaccination_lists["HEP B"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["HEP B"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["HEP B"][0].confirmation_status }}</td>
+                </tr>
+                </form>
 
-            </tr>
+                <tr>
+                    <td>
+                        HEP B
+                    </td>
+                    <td>{{ vaccination_lists["HEP B"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][0].confirmation_status }}</td>
 
-            <tr>
-                <td rowspan="6">6 Weeks</td>
-                <td>DPT</td>
-                <td>{{ vaccination_lists["DPT"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["DPT"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["DPT"][0].confirmation_status }}</td>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td rowspan="6">6 Weeks</td>
+                    <td>DPT</td>
+                    <td>{{ vaccination_lists["DPT"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["DPT"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["DPT"][0].confirmation_status }}</td>
 
-            <tr>
-                <td>HIB</td>
-                <td>{{ vaccination_lists["HIB"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["HIB"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["HIB"][0].confirmation_status }}</td>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td>HIB</td>
+                    <td>{{ vaccination_lists["HIB"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["HIB"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HIB"][0].confirmation_status }}</td>
 
-            <tr>
-                <td>HEP B</td>
-                <td>{{ vaccination_lists["HEP B"][1].administration_date }}</td>
-                <td>{{ vaccination_lists["HEP B"][1].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["HEP B"][1].confirmation_status }}</td>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td>HEP B</td>
+                    <td>{{ vaccination_lists["HEP B"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][1].confirmation_status }}</td>
 
-
-            <tr>
-                <td>OPV</td>
-                <td>{{ vaccination_lists["OPV"][1].administration_date }}</td>
-                <td>{{ vaccination_lists["OPV"][1].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["OPV"][1].confirmation_status }}</td>
-
-            </tr>
-            </form>
-
-            <tr>
-                <td>PNEUMOCOCCAL</td>
-                <td>{{ vaccination_lists["PNEUMOCOCCAL"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["PNEUMOCOCCAL"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][0].confirmation_status }}</td>
-
-            </tr>
-            </form>
-
-            <tr>
-                <td>ROTAVIRUS</td>
-                <td>{{ vaccination_lists["ROTAVIRUS"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["ROTAVIRUS"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["ROTAVIRUS"][0].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td rowspan="6">10 Weeks</td>
-                <td>DPT</td>
-                <td>{{ vaccination_lists["DPT"][1].administration_date }}</td>
-                <td>{{ vaccination_lists["DPT"][1].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["DPT"][1].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>HIB</td>
-                <td>{{ vaccination_lists["HIB"][1].administration_date }}</td>
-                <td>{{ vaccination_lists["HIB"][1].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["HIB"][1].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>HEP B</td>
-                <td>{{ vaccination_lists["HEP B"][1].administration_date }}</td>
-                <td>{{ vaccination_lists["HEP B"][1].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["HEP B"][1].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>OPV</td>
-                <td>{{ vaccination_lists["OPV"][2].administration_date }}</td>
-                <td>{{ vaccination_lists["OPV"][2].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["OPV"][2].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>PNEUMOCOCCAL</td>
-                <td>{{ vaccination_lists["PNEUMOCOCCAL"][1].administration_date }}</td>
-                <td>{{ vaccination_lists["PNEUMOCOCCAL"][1].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][1].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>ROTAVIRUS</td>
-                <td>{{ vaccination_lists["ROTAVIRUS"][1].administration_date }}</td>
-                <td>{{ vaccination_lists["ROTAVIRUS"][1].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["ROTAVIRUS"][1].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td rowspan="6">14 Weeks</td>
-                <td>DPT</td>
-                <td>{{ vaccination_lists["DPT"][2].administration_date }}</td>
-                <td>{{ vaccination_lists["DPT"][2].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["DPT"][2].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>HIB</td>
-                <td>{{ vaccination_lists["HIB"][2].administration_date }}</td>
-                <td>{{ vaccination_lists["HIB"][2].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["HIB"][2].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>HEP B</td>
-                <td>{{ vaccination_lists["HEP B"][2].administration_date }}</td>
-                <td>{{ vaccination_lists["HEP B"][2].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["HEP B"][2].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>OPV</td>
-                <td>{{ vaccination_lists["OPV"][3].administration_date }}</td>
-                <td>{{ vaccination_lists["OPV"][3].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["OPV"][3].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>PNEUMOCOCCAL</td>
-                <td>{{ vaccination_lists["PNEUMOCOCCAL"][2].administration_date }}</td>
-                <td>{{ vaccination_lists["PNEUMOCOCCAL"][2].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][2].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td>ROTAVIRUS</td>
-                <td>{{ vaccination_lists["ROTAVIRUS"][2].administration_date }}</td>
-                <td>{{ vaccination_lists["ROTAVIRUS"][2].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["ROTAVIRUS"][2].confirmation_status }}</td>
-
-            </tr>
-
-            <tr>
-                <td rowspan="2">6 Months</td>
-                <td>VIT A</td>
-                <td>{{ vaccination_lists["VIT A"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["VIT A"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["VIT A"][0].confirmation_status }}</td>
-
-            </tr>
+                </tr>
 
 
-            <tr>
-                <td>MEASLES</td>
-                <td>{{ vaccination_lists["MEASLES"][0].administration_date }}</td>
-                <td>{{ vaccination_lists["MEASLES"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["MEASLES"][0].confirmation_status }}</td>
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][1].confirmation_status }}</td>
 
-            </tr>
+                </tr>
+                </form>
+
+                <tr>
+                    <td>PNEUMOCOCCAL</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][0].confirmation_status }}</td>
+
+                </tr>
+                </form>
+
+                <tr>
+                    <td>ROTAVIRUS</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["ROTAVIRUS"][0].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td rowspan="6">10 Weeks</td>
+                    <td>DPT</td>
+                    <td>{{ vaccination_lists["DPT"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["DPT"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["DPT"][1].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>HIB</td>
+                    <td>{{ vaccination_lists["HIB"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["HIB"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HIB"][1].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>HEP B</td>
+                    <td>{{ vaccination_lists["HEP B"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][1].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][2].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>PNEUMOCOCCAL</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][1].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>ROTAVIRUS</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][1].administration_date }}</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][1].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["ROTAVIRUS"][1].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td rowspan="6">14 Weeks</td>
+                    <td>DPT</td>
+                    <td>{{ vaccination_lists["DPT"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["DPT"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["DPT"][2].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>HIB</td>
+                    <td>{{ vaccination_lists["HIB"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["HIB"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HIB"][2].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>HEP B</td>
+                    <td>{{ vaccination_lists["HEP B"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["HEP B"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["HEP B"][2].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>OPV</td>
+                    <td>{{ vaccination_lists["OPV"][3].administration_date }}</td>
+                    <td>{{ vaccination_lists["OPV"][3].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["OPV"][3].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>PNEUMOCOCCAL</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["PNEUMOCOCCAL"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["PNEUMOCOCCAL"][2].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>ROTAVIRUS</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][2].administration_date }}</td>
+                    <td>{{ vaccination_lists["ROTAVIRUS"][2].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["ROTAVIRUS"][2].confirmation_status }}</td>
+
+                </tr>
+
+                <tr>
+                    <td rowspan="2">6 Months</td>
+                    <td>VIT A</td>
+                    <td>{{ vaccination_lists["VIT A"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["VIT A"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["VIT A"][0].confirmation_status }}</td>
+
+                </tr>
 
 
-            <tr>
-                <td>9 Months</td>
-                <td>YELLOW FEVER</td>
-                <td>{{ vaccination_lists["YELLOW FEVER"][0].administration_date}}</td>
-                <td>{{ vaccination_lists["YELLOW FEVER"][0].practitioner_name }}</td>
-                <td class="pending">{{ vaccination_lists["YELLOW FEVER"][0].confirmation_status }}</td>
+                <tr>
+                    <td>MEASLES</td>
+                    <td>{{ vaccination_lists["MEASLES"][0].administration_date }}</td>
+                    <td>{{ vaccination_lists["MEASLES"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["MEASLES"][0].confirmation_status }}</td>
 
-            </tr>
+                </tr>
 
-        </tbody>
-    </table>
+
+                <tr>
+                    <td>9 Months</td>
+                    <td>YELLOW FEVER</td>
+                    <td>{{ vaccination_lists["YELLOW FEVER"][0].administration_date}}</td>
+                    <td>{{ vaccination_lists["YELLOW FEVER"][0].practitioner_name }}</td>
+                    <td class="pending">{{ vaccination_lists["YELLOW FEVER"][0].confirmation_status }}</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <script>
+        document.getElementById('toggle-btn').addEventListener('click', function () {
+            var sidebar = document.getElementById('sidebar-menu');
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-260px';
+            } else {
+                sidebar.style.left = '0px';
+            }
+        })
+    </script>
 </body>
 
 </html>
