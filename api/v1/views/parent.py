@@ -9,7 +9,7 @@ from models import storage
 from flask_bcrypt import Bcrypt
 from flask import current_app, jsonify, make_response, request, flash
 from models.parent import Parent
-from api.v1.views import app_views
+from api.v1.views import app_views, home
 import re
 from flask import render_template, redirect, url_for
 from flask_mail import Mail
@@ -17,6 +17,8 @@ from models.parent import Parent
 from models import storage
 from flask import request, flash
 from flask_mail import Message
+import uuid
+import secrets
 
 def send_email(to_email, password, name):
     subject = "Welcome to the IMS System!"
@@ -28,6 +30,48 @@ def send_email(to_email, password, name):
     )
     current_app.extensions["mail"].send(msg)
     return True
+
+def generate_session_id():
+    """generate_session_id"""
+    id = uuid.uuid4()
+    expiration_time = datetime.utcnow() + timedelta(minutes=10)
+    return f'{id}_{expiration_time}'
+    
+def send_email(to_email, password):
+    subject = "Welcome to the IMS System!"
+    body = f"Dear New Practitioner, \n\nWelcome to the IMS System! Your login credentials are as follows:\n\nUsername: {to_email}\nPassword: {password}\n\nPlease login and explore the system. If you have any questions, feel free to reach out to us.\n\nThank you!"
+
+    # Use Flask-Mail to send the email
+    msg = Message(
+        subject, sender="mailtrap@vandi.tech", recipients=[to_email], body=body
+    )
+    current_app.extensions["mail"].send(msg)
+    return True
+
+def send_reset_password_email(to_email, token):
+    subject = "Password Reset Request"
+    body = (
+        f"Copy the following token to reset your password: {token} You have 90 seconds"
+    )
+    msg = Message(
+        subject, sender="mailtrap@vandi.tech", recipients=[to_email], body=body
+    )
+    current_app.extensions["mail"].send(msg)
+
+
+def verify_reset_password(reset_token, new_password):
+    """This function verifies that the token has not expired and resets the password"""
+    practitioner = storage.get_by_token("Practitioner", reset_token)
+    if not practitioner:
+        return False
+    if practitioner.token_expiration < datetime.now():
+        return False
+    if new_password is not None:
+        hashed_password = Bcrypt().generate_password_hash(new_password).decode("utf-8")
+        practitioner.password = hashed_password
+        practitioner.save()
+        return True
+
 
 def send_reset_password_email(to_email, token):
     subject = "Password Reset Request"
@@ -51,6 +95,11 @@ def get_by_phone(email):
         print("parent", parent)
         if parent.email == email:
             return parent
+# create a how route for the entire system
+@app_views.route("/", methods=["GET"], strict_slashes=False)
+def home():
+    """return the status of the api"""
+    return render_template("index.html")
 
 # print the status
 @app_views.route("/status", methods=["GET"], strict_slashes=False)
@@ -127,7 +176,7 @@ def register_parent():
 @app_views.route("/parent/register", methods=["GET", "POST"], strict_slashes=False)
 def parent_register():
     if request.method == "GET":
-        return render_template("parent.html")
+        return render_template("parent_l.html")
 
     email = request.form.get("email")
     password = request.form.get("password")
@@ -184,7 +233,7 @@ def parent_register():
 def login_parent():
     """This function logs in a parent"""
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template("parentLogin.html")
     
     email = request.form.get("email")
     password = request.form.get("password")
@@ -276,3 +325,67 @@ def parent_children(parent_id):
     return render_template("parent_search.html", parent=parent)
 
 
+@app_views.route(
+    "/parent/reset_password", methods=["GET", "POST"], strict_slashes=False
+)
+def resetPassword_link():
+    if request.method == "GET":
+        
+        return render_template("forget_pass.html")
+
+    email = request.form.get("email")
+
+    if not email:
+        flash("Email is required", category="error")
+        return redirect(url_for("app_views.resetPassword_link"))
+
+    parent = storage.get_by_email("Practitioner", email)
+
+    if not parent:
+        flash("No parent with that email", category="error")
+        return redirect(url_for("app_views.reset_password_link"))
+
+    reset_token = secrets.token_urlsafe(20)
+    expiration = datetime.now() + timedelta(seconds=90)
+
+    parent.reset_token = reset_token
+    parent.token_expiration = expiration
+    parent.save()
+
+    # Send reset password link via email
+    send_reset_password_email(email, reset_token)
+
+    flash("Reset token sent to your email. YOU HAVE 1 MIN", category="success")
+    return redirect(url_for("app_views.reset_password"))
+
+
+# get the token from the url
+@app_views.route(
+    "/parent/reset_pass", methods=["GET", "POST"], strict_slashes=False
+)
+def resetPassword():
+    """This function resets the password after validating the token"""
+
+    if request.method == "GET":
+        return render_template("reset_password.html")
+    pass_pattern = (
+        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+    )
+    reset_token = request.form.get("token")
+    new_password = request.form.get("password")
+    confirm = request.form.get("confirm_password")
+    if not re.match(pass_pattern, new_password):
+        flash(
+            "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character",
+            category="error",
+        )
+        return redirect(url_for("app_views.resetPassword"))
+    if confirm != new_password:
+        flash("Password do not match", category="error")
+        return redirect(url_for("app_views.resetPassword"))
+    if verify_reset_password(reset_token, new_password):
+        flash("Password rest successful", category="succcess")
+        return redirect(url_for("app_views.loginParent"))
+    else:
+        flash("Invalid token", category="error")
+        return redirect(url_for("app_views.resetPassword"))

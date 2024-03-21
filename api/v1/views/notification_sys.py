@@ -66,6 +66,7 @@ def get_child_id(wakati, non_immunized):
         remaining_time = time - datetime.utcnow()
         if remaining_time.days < 3:
             child_ids.extend(record.child_id for record in non_immunized if record.id == date.vaccine_administration_id)
+            print(child_ids)
     return child_ids
 
 children_id = get_child_id(wakati, non_immunized)
@@ -76,6 +77,7 @@ def email_childID(children_id, wazazi):
     child_ids_set = set(children_id)
     for mzazi in wazazi:
         for child in mzazi.children:
+            print(child)
             if child.id in child_ids_set:
                 email_first_name.append((mzazi.first_name, mzazi.email, child.first_name))
     return email_first_name
