@@ -1,0 +1,21 @@
+{% extends "baseTemp.html" %} {% block title %}Practitioner Login{% endblock %}
+{%block content %}
+<link rel="stylesheet" href={{ url_for('static',filename='css/login.css' )}} />
+
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm" method="POST">
+            <input type="email" name="email" placeholder="Enter Email or phone Number" required />
+            <input type="password" name="password" placeholder="Password" required />
+
+            <button type="submit">Log In</button>
+            <div class="forgot-password">
+                <a href="/api/v1/parent/resetPassword">Forgot Password?</a>
+                <a href="/api/v1/parent/register">Sign Up</a>
+
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}

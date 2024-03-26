@@ -17,6 +17,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from models import storage
 from api.v1.views import app_views
+from api.v1.views import home
 from flask_mail import Mail
 from os import getenv
 from api.v1.views.practitioner import app_config
@@ -56,6 +57,7 @@ CORS(app, origins="0.0.0.0")
 
 # Register blueprint
 app.register_blueprint(app_views)
+
 
 
 # Teardown app context

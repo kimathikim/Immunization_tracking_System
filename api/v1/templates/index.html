@@ -1,0 +1,354 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="Site keywords here">
+	<meta name="description" content="">
+	<meta name='copyright' content=''>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>IMS.</title>
+
+	<link rel="icon" href="img/favicon.png">
+
+	<link
+		href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/icofont.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/datepicker.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styless.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css' ) }}">
+</head>
+
+<body>
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader-outter"></div>
+			<div class="loader-inner"></div>
+
+			<div class="indicator">
+				<svg width="16px" height="12px">
+					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+
+	<!-- Header Area -->
+	<header class="header">
+		<!-- Topbar -->
+		<div class="topbar">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-5 col-12">
+						<!-- Contact -->
+						<ul class="top-link">
+							<li><a href="#">About</a></li>
+							<li><a href="#">Doctors</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">FAQ</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-6 col-md-7 col-12">
+						<!-- Top Contact -->
+						<ul class="top-contact">
+							<li><i class="fa fa-phone"></i>0796699969</li>
+							<li><i class="fa fa-envelope"></i><a
+									href="mailto:support@yourmail.com">briankimathi94@gmail.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header-inner">
+			<div class="container">
+				<div class="inner">
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-12">
+							<!-- Start Logo -->
+							<div class="logo">
+								<a href="index.html"><img src="img/" alt="#"></a>
+							</div>
+							<!-- End Logo -->
+							<!-- Mobile Nav -->
+							<div class="mobile-nav"></div>
+							<!-- End Mobile Nav -->
+						</div>
+						<div class="col-lg-7 col-md-9 col-12">
+							<!-- Main Menu -->
+							<div class="main-menu">
+								<nav class="navigation">
+									<ul class="nav menu">
+										<li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
+											<ul class="dropdown">
+												<li><a href="index.html">Home Page 1</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Doctors</a></li>
+										<li><a href="#">Services </a></li>
+										<li><a href="#">Pages <i class="icofont-rounded-down"></i></a>
+											<ul class="dropdown">
+												<li><a href="404.html">404 Error</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>
+											<ul class="dropdown">
+												<li><a href="blog-single.html">Blog Details</a></li>
+											</ul>
+										</li>
+										<li><a href="contact.html">Contact Us</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+						<!-- <div class="col-lg-2 col-12">
+							<div class="get-quote">
+								<a href="appointment.html" class="btn">Book Appointment</a>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="slider">
+		<div class="hero-slider">
+			<div class="single-slider" style="background-image:url('url_for(" static", filename="images/logo.png" )')">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-7">
+							<div class="text">
+								<h1>We Provide <span>Immunization</span> Services That You Can <span>Trust!</span></h1>
+								<p>Welcome to the immunization tracking system. Be updated on the next immunization </p>
+
+								<div class="button">
+									<a href="parent/register" class="btn">Create account</a>
+									<a href="/api/v1/parent/login" class="btn primary">Login</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="single-slider" style="background-image:url('url_for(" static", filename="images/logo.png" )')">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-7">
+							<div class="text">
+								<h1>We Provide <span>Immunization</span> Services That You Can <span>Trust!</span></h1>
+								<p>Welcome to the immunization tracking system. Be updated on the next immunization </p>
+
+								<div class="button">
+									<a href="parent/register" class="btn">Create account</a>
+									<a href="/api/v1/parent/login" class="btn primary">Login</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="single-slider" style="background-image:url('url_for(" static", filename="images/logo.png" )')">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-7">
+							<div class="text">
+								<h1>We Provide <span>Immunization</span> Services That You Can <span>Trust!</span>
+								</h1>
+								<p>Trusted hospitals near you.</p>
+								<div class="button">
+									<a href="/api/v1/practitioner/login" class="btn primary">Practitioner Login</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div id="fun-facts" class="fun-facts section overlay">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Fun -->
+					<div class="single-fun">
+						<i class="icofont icofont-syringe"></i>
+						<div class="content">
+							<span class="counter">3468</span>
+							<p>Immunization Shots</p>
+						</div>
+					</div>
+					<!-- End Single Fun -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Fun -->
+					<div class="single-fun">
+						<i class="icofont icofont-user-alt-3"></i>
+						<div class="content">
+							<span class="counter">557</span>
+							<p>Immunization Specialists</p>
+						</div>
+					</div>
+					<!-- End Single Fun -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Fun -->
+					<div class="single-fun">
+						<i class="icofont-simple-smile"></i>
+						<div class="content">
+							<span class="counter">4379</span>
+							<p>Happy Immunized Patients</p>
+						</div>
+					</div>
+					<!-- End Single Fun -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Fun -->
+					<div class="single-fun">
+						<i class="icofont icofont-table"></i>
+						<div class="content">
+							<span class="counter">32</span>
+							<p>Years of Immunization Experience</p>
+						</div>
+						</di>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Footer Area -->
+		<footer id="footer" class="footer ">
+			<!-- Footer Top -->
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer">
+								<h2>About Us</h2>
+								<p>The Immunization Tracking System is dedicated to providing comprehensive and
+									efficient
+									tracking of immunization records. Our system ensures that individuals receive the
+									necessary vaccinations and helps healthcare professionals monitor and manage
+									immunization schedules. We strive to promote public health and prevent the spread of
+									vaccine-preventable diseases. Trust us to keep your immunization records up-to-date
+									and
+									accessible whenever you need them.</p>
+								<!-- Social -->
+								<ul class="social">
+									<li><a href="#"><i class="icofont-facebook"></i></a></li>
+									<li><a href="#"><i class="icofont-google-plus"></i></a></li>
+									<li><a href="#"><i class="icofont-twitter"></i></a></li>
+									<li><a href="#"><i class="icofont-vimeo"></i></a></li>
+									<li><a href="#"><i class="icofont-pinterest"></i></a></li>
+								</ul>
+								<!-- End Social -->
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer f-link">
+								<h2>Quick Links</h2>
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a>
+											</li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About
+													Us</a>
+											</li>
+											<li><a href="#"><i class="fa fa-caret-right"
+														aria-hidden="true"></i>Services</a>
+											</li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our
+													Cases</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other
+													Links</a></li>
+										</ul>
+									</div>
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											<li><a href="#"><i class="fa fa-caret-right"
+														aria-hidden="true"></i>Consuling</a></li>
+											<li><a href="#"><i class="fa fa-caret-right"
+														aria-hidden="true"></i>Finance</a>
+											</li>
+											<li><a href="#"><i class="fa fa-caret-right"
+														aria-hidden="true"></i>Testimonials</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a>
+											</li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact
+													Us</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer">
+								<h2>Open Hours</h2>
+								<p>Our immunization center is open to serve you during the following hours:</p>
+								<ul class="time-sidual">
+									<li class="day">Monday - Friday <span>8.00 AM - 6.00 PM</span></li>
+									<li class="day">Saturday <span>9.00 AM - 4.00 PM</span></li>
+									<li class="day">Sunday <span>Closed</span></li>
+								</ul>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<!--/ End Footer Top -->
+			<!-- Copyright -->
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-12">
+							<div class="copyright-content">
+								<p>© Copyright 2024 | All Rights Reserved by <a href="https://www.wpthemesgrid.com"
+										target="_blank">www.vandi.tech</a> </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</footer>
+		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery-migrate-3.0.0.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/easing.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/colors.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.nav.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/slicknav.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.scrollUp.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/niceselect.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/tilt.jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/owl-carousel.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.counterup.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/steller.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
