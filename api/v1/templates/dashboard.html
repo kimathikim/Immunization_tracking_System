@@ -62,21 +62,30 @@ Practitioner Dashboard
     </div>
     <div class="container-d">
         <h1>Practitioner Profile</h1>
-        <div class="profile-picture"i>
-            <img src="https://assets-global.website-files.com/5ee7039040ea6efb80d7521c/5fe0834d9185d941c1f5bd12_Immunisation-Guide-for-Your-Baby.jpg"
+
+        {% if practitioner.profile_picture %}
+        <div class="profile-picture" i>
+
+            <img src="{{ url_for('app_views.display_images', filename=practitioner.profile_picture) }}"
                 alt="Profile Picture">
+
         </div>
+        {% endif %}
         <div class="profile-info">
             <h2>Personal Information</h2>
-            <p><strong>Name:</strong> {{ practitioner.name }}</p>
+            <p><strong>Name:</strong> Dr {{ practitioner.first_name }} {{ practitioner.second_Name }}</p>
             <p><strong>Email:</strong> {{ practitioner.email }}</p>
-            <p><strong>Phone:</strong> {{ practitioner.phone }}</p>
+            <p><strong>Phone:</strong> {{ practitioner.phone_number }}</p>
             <!-- Add more personal information fields as needed -->
         </div>
         <div class="profile-info">
             <h2>Professional Information</h2>
-            <p><strong>License Number:</strong> {{ practitioner.license_number }}</p>
-            <!-- Add more professional information fields as needed -->
+            <p><strong>License Number:</strong> {{ practitioner.profile_picture }}</p>
+        </div>
+
+    </div>
+    <a href={{ url_for('app_views.update_profile')}}>Update Profile</a>
+
 
 </body>
 

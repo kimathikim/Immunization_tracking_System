@@ -29,8 +29,16 @@ from models.sessionManager import Session
 from datetime import datetime, timedelta
 from models.dueDate import Duedate
 from datetime import datetime, timedelta
+import os
+import secrets
+from werkzeug.utils import secure_filename
 
 app_config = "kimathi"
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def generate_session_id():
     """generate_session_id"""
@@ -195,12 +203,96 @@ def practitioner_dashboard():
     """This function redirects to the practitioner dashboard"""
     user_id = request.cookies.get("Session")
     session = storage.get("Session", user_id)
+    practitioner = storage.get_by_email("Practitioner", session.email)
     if not session or session.expiration_time < datetime.utcnow():
         flash("LOGIN TO ACCESS THIS PAGE", category="error")
         return redirect(url_for("app_views.login_practitioner"))   
     session.expiration_time = datetime.utcnow() + timedelta(minutes=2)
     storage.save()
-    return render_template("dashboard.html", practitioner=None)
+    print(practitioner)
+    return render_template("dashboard.html", practitioner=practitioner)
+
+@app_views.route("/practitioner/dis_images/<filename>", methods=["GET", "POST"], strict_slashes=False)
+def display_images(filename):
+    print(filename)
+    return redirect(url_for("static", filename=f"prac_images/{filename}"), code=301)
+
+@app_views.route("/practitioner/update_profile", methods=["GET", "POST"], strict_slashes=False)
+def update_profile():
+    """This method updates the profile of the practitioner """
+    user_id = request.cookies.get("Session")
+    session = storage.get("Session", user_id)
+    print(session)
+    if not session or session.expiration_time < datetime.utcnow():
+        flash("TIMEOUT", category="error")
+        return redirect(url_for("app_views.login_practitioner"))   
+    session.expiration_time = datetime.utcnow() + timedelta(minutes=30)
+    storage.save()
+    practitioner = storage.get_by_email("Practitioner", session.email)
+    print(practitioner)
+    if request.method == "GET":
+        return render_template("update_prac.html", practitioner=practitioner)
+    
+    password = request.form.get("password")
+    confirm_password = request.form.get("confirm_password")
+    phone_number = request.form.get("phone_number")
+    id_No = request.form.get("id_no")
+    profile_picture = request.files['profile_picture']
+    print(profile_picture)
+
+    if profile_picture.filename == '':
+        flash('No selected file', category='error')
+        return redirect(request.url)
+
+    if not allowed_file(profile_picture.filename):
+        flash('Invalid file extension. Only PNG, JPG, JPEG, and GIF files are allowed.', category='error')
+        return redirect(request.url)
+
+    UPLOAD_FOLDER = 'api/v1/static/prac_images'
+    cwd = os.getcwd()
+    parts = cwd.split('/')
+    cwd = '/'.join(parts[:-1])
+    upload_path = os.path.join(cwd, UPLOAD_FOLDER)
+    try:
+        filename = secure_filename(profile_picture.filename)
+        profile_picture.save(os.path.join(upload_path, filename))
+        flash('File successfully uploaded', category='success')
+    except Exception as e:
+        flash('An error occurred while uploading the file', category='error')
+        current_app.logger.error(f"Errror uploading file: {e}")
+
+    patterns = {
+        "phone_number": r"^\d{10}$",
+        "id_No": r"^\d{8}$", 
+        "password": r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+    }
+
+    errors = {
+        "phone_number": "Invalid phone number format",
+        "id_No": "Invalid Licence number format",
+        "password": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character",
+    }
+    if password != confirm_password:
+        flash("Passwords do not match", category="error")
+        return redirect(url_for("app_views.update_profile"))
+    
+    for field, pattern in patterns.items():
+        if not re.match(pattern, locals()[field]):
+            flash(errors[field], category="error")
+            return redirect(url_for("app_views.update_profile"))
+
+    hashed_password = Bcrypt().generate_password_hash(password).decode("utf-8")
+
+    if not all([phone_number, password, confirm_password, profile_picture]):
+        flash("Kindly fill in all the fields", category="error")
+        return redirect(url_for("app_views.update_profile"))
+    practitioner.phone_number = phone_number
+    practitioner.password = hashed_password
+    practitioner.profile_picture = profile_picture.filename
+    practitioner.id_No = id_No
+    practitioner.save()
+    flash("Profile updated successfully", category="success")
+    return redirect(url_for("app_views.practitioner_dashboard"))
 
 
 @app_views.route(
@@ -450,7 +542,9 @@ def parent_regist():
     second_Name = request.form.get("second_Name")
     phone_number = request.form.get("phone_number")
     county = request.form.get("county")
-    if storage.get_by_email(email):
+    print(email)
+    parent = storage.get_by_email("Parent", email)
+    if parent:
         flash("The email has already been used!!!", category="error")
         return redirect(url_for("app_views.parent_regist"))
     patterns = {

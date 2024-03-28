@@ -269,10 +269,10 @@ def login_parent():
             storage.save()
             
     session = storage.get_by_email("Session", email)
-    set_cookie = make_response(redirect(url_for("app_views.parent_dashboard")))
-    
+    set_cookie = make_response(redirect(url_for("app_views.parent_dashboard"))) 
+
     set_cookie.set_cookie("Session", session.id)
-    
+
     flash(f"Welcome {parent.first_name}!", category="success")
     return set_cookie
 
@@ -291,13 +291,16 @@ def search_parent_form():
         if phone_number == "":
             flash("Kindly fill in the phone number", category="error")
             return render_template("parent_search.html", parent=None)
-        parent = storage.get_by_phone("Parent", phone_number)
-        print(parent)
-        if parent is None:
-            flash("No parent with that phone number", category="error")
+        try:
+            parent = storage.get_by_phone("Parent", phone_number)
+            if parent is None:
+                flash("No parent with that phone number", category="error")
+                return render_template("parent_search.html", parent=None)
+            else:
+                return render_template("parent_search.html", parent=parent)
+        except Exception as e:
+            flash("An error occurred", category="error")
             return render_template("parent_search.html", parent=None)
-        else:
-            return render_template("parent_search.html", parent=parent)
     return render_template("parent_search.html", parent=None)
 
 
@@ -313,7 +316,7 @@ def parent_dashboard():
     storage.save()
     parent = storage.get_by_email("Parent", session.email)
     children = parent.children
-    return render_template("parent_dashboard.html",children=children)
+    return render_template("parent_dashboard.html",children=children, parent=parent)
 
 
 

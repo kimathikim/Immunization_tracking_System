@@ -55,10 +55,10 @@ def register_admin():
         flash('Invalid file extension. Only PNG, JPG, JPEG, and GIF files are allowed.', category='error')
         return redirect(request.url)
 
-    UPLOAD_FOLDER = 'api/v1/static/profile_pictures'
+    UPLOAD_FOLDER = 'api/v1/static/prac_images'
     cwd = os.getcwd()
     parts = cwd.split('/')
-    cwd = '/'.join(parts)
+    cwd = '/'.join(parts[:-1])
     upload_path = os.path.join(cwd, UPLOAD_FOLDER)
     try:
         filename = secure_filename(profile_picture.filename)
@@ -79,10 +79,6 @@ def register_admin():
         "phone_number": "Invalid phone number format",
         "password": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character",
     }
-
-    # Check if all fields are filled
-    
-        # return redirect(url_for("app_views.register_admin"))
 
     # Check if passwords match
     if password != confirm_password:
@@ -113,11 +109,7 @@ def register_admin():
         return redirect(url_for("app_views.register_admin"))
     else:
         new_admin.save()
-
-    flash(f"Welcome {new_admin.first_name} Into the system!", category="success")
-
-    # login_user(new_admin, remember=True)
-    return redirect(url_for("app_views.practitioner_dashboard"))
+        return redirect(url_for("app_views.admin_dashboard"))
 
 
 
@@ -202,4 +194,3 @@ def add_vaccine():
     flash("{{new_vaccine.names}} vaccine added successfully", category="success")
     
     return redirect(url_for("app_views.admin_dashboard"))
-

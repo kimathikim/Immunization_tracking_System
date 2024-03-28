@@ -1,0 +1,55 @@
+{% extends "baseTemp.html" %}
+{% block title%} Update Practitioner profile {% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css' ) }}" />
+    <style>
+        /* .header {
+      position: fixed;
+      width: 100%;
+      padding: 0;
+      margin-left: -2%;
+      background-color: #3498db;
+      color: #D1E7FF;
+      padding: 11px;
+    } */
+
+        /* .container {
+      max-width: 800px;
+      margin: auto;
+      margin-top: 40px;
+      padding: 100px;
+      background-color: #f2f6fa;
+    } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Update Profile</h2>
+        <form id="signupForm" class="login-container" method="post" enctype="multipart/form-data">
+
+            <label for="profilePicture">Profile Picture:</label>
+            <input type="file" id="profilePicture" name="profile_picture" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone_number" placeholder="0712345678">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="id_no">Licence_NO:</label>
+            <input type="" id="id_no" name="id_no" required>
+
+
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" name="confirm_password" required>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

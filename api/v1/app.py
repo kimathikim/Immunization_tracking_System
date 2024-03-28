@@ -72,12 +72,17 @@ def teardown_db(exception):
 def page_not_found(error):
     """Return JSON formatted 404 status code response"""
     return render_template("404.html", error=error)
+# incase of any error in the server abstract it and return a json response
+@app.errorhandler(500)
+def internal_error(error):
+    """Return JSON formatted 500 status code response"""
+    return render_template("400.html", error=error)
 
 
 if __name__ == "__main__":
     app.run(
         host=getenv("IMS_API_HOST", "0.0.0.0"),
         port=int(getenv("IMS_API_PORT", "5000")),
-        threaded=True,
         debug=True,
+
     )

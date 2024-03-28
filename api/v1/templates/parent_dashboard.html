@@ -8,6 +8,7 @@ Practitioner Dashboard
 
 <head>
     <link rel="stylesheet" href={{ url_for('static', filename='css/dashboard.css' ) }} />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css' ) }}" />
 </head>
 
 <body>
@@ -56,17 +57,24 @@ Practitioner Dashboard
                             <span>Vaccine-inventory</span>
                         </a>
                     </li>
-        
+
                 </ul>
             </div>
     </nav>
     </header>
     <div>
         <!-- Section 1: Parent Information -->
-        <section class="parent-info">
-            <h2>Parent Information</h2>
-            <p>Here you can view and update your personal information.</p>
-         
+        <section class="container">
+            <h2>Welcome, Parent!</h2>
+            <p>Thank you for joining our Immunization Tracking System. By allowing your child(ren) to be immunized, you
+                are ensuring their health and well-being. Congratulations on choosing the best system!</p>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li><strong>Full Name:</strong>{{ parent.first_name }} {{ parent.second_Name }}</li>
+                <li><strong>Email:</strong> {{ parent.email }}</li>
+                <li><strong>Phone Number:</strong> {{ parent.phone_number }}</li>
+                <li><strong>Address:</strong> {{ parent.county }}</li>
+            </ul>
+
         </section>
 
     </div>
