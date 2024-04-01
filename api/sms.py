@@ -1,24 +1,23 @@
+#!/usr/bin/env python3
 import africastalking
 
 # Initialize Africa's Talking
 
 africastalking.initialize(
-    username='[sandbox]',
-    api_key="[6000a4760274c433398eb2693f1430f834256f8c45c346c0ef1fadc782914633]"
+    username='ImmunSys',
+    api_key="91a098b314aeda715976967be01d9127f00d619fedd5157385977c4185d4061e"
 )
 
 class SendSMS:
     def sending(self):
-        # Set the numbers in international format
-        recipients = ["+254714205641"]
-        # Set your message
-        message = "Hey AT Ninja!"
-        # Set your shortCode or senderId
-        sender = "+25479669996"
+        recipients = ["+254796699969", "+254787353102"]
+        message = "Hello mavin. Welcome to immunization tracking system.\nWe value the health of your Child!"
+        sender = 796699969
+        print(sender, recipients, message)
         try:
             sms = africastalking.SMS
             print(sms)
-            response = sms.send(message, recipients, sender)
+            response = sms.send(message, recipients,)
             print(response)
         except Exception as e:
             print(f'Houston, we have a problem: {e}')

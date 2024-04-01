@@ -11,11 +11,40 @@ import smtplib
 import pytz
 import schedule
 import time
+from dotenv import load_dotenv
+import os
+import africastalking
 
-myEmail = "briankimathi94@gmail.com"
-passwd = "uqiv dykn sntz ewyq"
+load_dotenv()
+
+myEmail = os.getenv("EMAIL") 
+passwd = os.getenv("PASSWORD")
+uname = os.getenv("SMSUSER")
+api_key = os.getenv("API_KEY")
+print(uname, api_key)
 smtp_server = 'smtp.gmail.com'
 port = 587
+
+def sending_sms(details_list):
+        """This function sends notification using sms"""
+        try:
+            for detail in details_list:
+                message = f"Hello {detail[0]}, Your child {detail[2]} has vaccinations that are due in 2 days.\nLogin to your ITM system to check the next immunization"
+                recipients = [f"+254{detail[1]}"]
+                africastalking.initialize(uname, api_key)
+                sender = 796699969
+                print(sender, recipients, message)
+                try:
+                    sms = africastalking.SMS
+                    print(sms)
+                    response = sms.send(message, recipients,)
+                    print(response)
+                except Exception as e:
+                    print(f'Mother father, we have a problem: {e}')
+        except Exception as e:
+            print(f"mother father, we have a problem: {e} ")
+        finally:
+            print("Atleast you tried!!")
 
 def send_reminder_email(details_list):
     """This function sends an email reminder to parents about upcoming vaccinations"""
@@ -66,7 +95,6 @@ def get_child_id(wakati, non_immunized):
         remaining_time = time - datetime.utcnow()
         if remaining_time.days < 3:
             child_ids.extend(record.child_id for record in non_immunized if record.id == date.vaccine_administration_id)
-            print(child_ids)
     return child_ids
 
 children_id = get_child_id(wakati, non_immunized)
@@ -77,14 +105,26 @@ def email_childID(children_id, wazazi):
     child_ids_set = set(children_id)
     for mzazi in wazazi:
         for child in mzazi.children:
-            print(child)
             if child.id in child_ids_set:
                 email_first_name.append((mzazi.first_name, mzazi.email, child.first_name))
     return email_first_name
-                
+
+def sms_childID(children_id, wazazi):
+    """This function returns the phone number, first name of parents for each child name"""
+    sms_first_name = []
+    child_ids_set = set(children_id)
+    for mzazi in wazazi:
+        for child in mzazi.children:
+            if child.id in child_ids_set:
+                sms_first_name.append((mzazi.first_name, mzazi.phone_number, child.first_name))
+    return sms_first_name
+sms_childName = sms_childID(children_id, wazazi)
+
+
 email_childName = email_childID(children_id, wazazi)
 
 
-
+# send notificatio
+sending_sms(sms_childName)
 send_reminder_email(email_childName)
 
