@@ -38,6 +38,7 @@ def sending_sms(details_list):
                     sms = africastalking.SMS
                     print(sms)
                     response = sms.send(message, recipients,)
+        
                     print(response)
                 except Exception as e:
                     print(f'Mother father, we have a problem: {e}')
@@ -119,6 +120,7 @@ def sms_childID(children_id, wazazi):
                 sms_first_name.append((mzazi.first_name, mzazi.phone_number, child.first_name))
     return sms_first_name
 sms_childName = sms_childID(children_id, wazazi)
+
 
 
 email_childName = email_childID(children_id, wazazi)

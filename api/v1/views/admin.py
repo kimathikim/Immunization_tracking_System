@@ -58,7 +58,7 @@ def register_admin():
     UPLOAD_FOLDER = 'api/v1/static/prac_images'
     cwd = os.getcwd()
     parts = cwd.split('/')
-    cwd = '/'.join(parts[:-1])
+    cwd = '/'.join(parts)
     upload_path = os.path.join(cwd, UPLOAD_FOLDER)
     try:
         filename = secure_filename(profile_picture.filename)
