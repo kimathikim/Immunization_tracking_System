@@ -5,7 +5,7 @@ import africastalking
 
 africastalking.initialize(
     username='ImmunSys',
-    api_key="91a098b314aeda715976967be01d9127f00d619fedd5157385977c4185d4061e"
+    api_key="91a098b314aeda715976967be01d9127f00d619fedd515ijijijijijijijiji7385977c4ijijij185d4061e"
 )
 
 class SendSMS:
